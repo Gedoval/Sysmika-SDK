@@ -1,0 +1,44 @@
+swagger: '2.0'
+info:
+  description: Global API to work with the SDK implementations
+  version: 1.0.0
+  title: Global API
+  contact:
+    email: gaston.doval@globant.com
+tags:
+  - name: admins
+    description: QA/Production secured calls
+  - name: developers
+    description: Endpoints used for development
+
+paths:
+  /user/test:
+    get:
+      tags:
+        - developers
+      summary: Creates a test user on a MercadoLibre account
+      operationId: test.test
+      description: |
+        By passing the TG-Code for a specific MercadoLibre app, the endpoint will generate an access token
+        and then create a test user. This user cna be used to test the basic actions on the MercadoLibre platform
+      produces:
+        - application/json
+      responses:
+        200:
+          description: User created
+        400:
+          description: Invalid grant
+      parameters:
+        - in: header
+          name: TG-Code
+          description: Authentication code needed to create an access token
+          required: true
+          type: string
+definitions:
+  #TODO
+
+host: localhost
+basePath: /Sysmika/api/meli
+schemes:
+  - https
+  - http
