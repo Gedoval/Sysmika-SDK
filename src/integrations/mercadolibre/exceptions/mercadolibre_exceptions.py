@@ -3,6 +3,14 @@ class MercadoLibreError(Exception):
 
 
 class AuthTokenGenerationError(MercadoLibreError):
-    def __init__(self, error_code, message):
-        self.error_code = error_code
+    def __init__(self):
+        self.status = None
+        self.message = None
+        self.error = None
+        self.cause = None
+
+
+class MissingHeaders(MercadoLibreError):
+    def __init__(self, message, status):
+        self.status = status
         self.message = message
