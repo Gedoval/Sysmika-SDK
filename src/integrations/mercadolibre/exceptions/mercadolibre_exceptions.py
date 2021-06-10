@@ -10,7 +10,7 @@ class AuthTokenGenerationError(MercadoLibreError):
         self.cause = None
 
 
-class MissingHeaders(MercadoLibreError):
+class MissingHeadersError(MercadoLibreError):
     def __init__(self, message, status):
         self.status = status
         self.message = message

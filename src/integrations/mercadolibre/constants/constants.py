@@ -5,3 +5,6 @@ class MercadoLibreConstants:
     TG_CODE = "tg_code"
     REDIRECT_URL = "redirect_url"
     SITE = "site_id"
+    APP_ID = "app_id"
+    APP_SECRET = "app_secret"
+    APP_TOKEN = "app_token"

@@ -6,6 +6,9 @@ from src.utils.Utils import SysmikaUtils
 from src.integrations.mercadolibre.model.test_user import TestUser
 import requests_mock
 import os
+import json
+from src.utils.Utils import SysmikaUtils
+from src.integrations.mercadolibre.model.test_user import TestUser
 
 
 class TestMercadoLibreApi:
@@ -28,11 +31,15 @@ class TestMercadoLibreApi:
                 json=open(TestMercadoLibreApi.target_dir + "/resources/test_user.json").read()
             )
             headers = {
-                "tg_code": "asdadasd",
-                "redirect_url": "asd",
+                "app_token": "asdadasd",
                 "site_id": "MLA"
             }
 
             response = client.get("/user/test", headers=headers)
             assert response is not None
             assert response.status_code is 200
+            data = response.data.decode('UTF-8').strip('\n')
+            test_user = SysmikaUtils.json_parser(data, TestUser())
+            assert test_user is not None and isinstance(test_user, TestUser)
+
+

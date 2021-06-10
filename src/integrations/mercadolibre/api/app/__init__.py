@@ -1,5 +1,5 @@
 import os
-import json
+import yaml
 from flask import Flask, request
 from src.integrations.mercadolibre.api.mercadolibre_invoker import MercadoLibreAPICaller
 from src.integrations.mercadolibre.exceptions.mercadolibre_exceptions import *
@@ -12,6 +12,8 @@ def create_app(test_config=None):
         SECRET_KEY="dev",
         DATABASE=os.path.join(app.instance_path, "flaskr-sqlite"),
     )
+    invoker = MercadoLibreAPICaller()
+
     if test_config is None:
         app.config.from_pyfile('config.py', silent=True)
     else:
@@ -23,21 +25,12 @@ def create_app(test_config=None):
 
     @app.route("/user/test")
     def create_test_user():
-        if not (Consts.TG_CODE or Consts.REDIRECT_URL or Consts.SITE) in request.headers:
-            raise MissingHeaders("Missing required headers", 500)
-        test_user = MercadoLibreAPICaller(
-            api_key="gggggg",
-            api_secret="0000000"
-        ).create_mercado_libre_test_user(
-            request.headers[Consts.TG_CODE],
-            request.headers[Consts.REDIRECT_URL],
+        if not (Consts.APP_TOKEN or Consts.SITE) in request.headers:
+            raise MissingHeadersError("Missing required headers", 500)
+        test_user = invoker.create_mercado_libre_test_user(
+            request.headers[Consts.APP_TOKEN],
             request.headers[Consts.SITE]
         )
         return vars(test_user)
-
-
-    @app.route("/")
-    def hello():
-        return "ElPsyKongroo"
 
     return app
