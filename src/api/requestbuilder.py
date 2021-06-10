@@ -1,12 +1,14 @@
 from src.api.requestclient import RequestClient
 import urllib.parse
+import yaml
 
 
 class RequestBuilder:
 
-    def __init__(self, api_key, api_secret):
-        self.__api_key = api_key
-        self.__api_secret = api_secret
+    def __init__(self, app_id, app_secret, app_token):
+        self.__app_id = app_id
+        self.__app_secret = app_secret
+        self.__app_token = app_token
         self.__params = dict()
         self.client = RequestClient()
 
@@ -43,8 +45,20 @@ class RequestBuilder:
         else:
             self.client.url = url + "?" + urllib.parse.urlencode(self.client.params)
 
-    def get_api_key(self):
-        return self.__api_key
+    def set_api_credentials_from_file(self, file):
+        with open(file, "r") as stream:
+            try:
+                creds = yaml.safe_load(stream).get("credentials").get("api")
+                self.__app_id = creds.get("app_id")
+                self.__app_secret = creds.get("app_secret")
+            except yaml.YAMLError as exc:
+                print(exc)
 
-    def get_api_secret(self):
-        return self.__api_secret
+    def get_app_id(self):
+        return self.__app_id
+
+    def get_app_secret(self):
+        return self.__app_secret
+
+    def get_app_token(self):
+        return self.__app_token

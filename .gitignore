@@ -130,3 +130,6 @@ dmypy.json
 
 #Idea IDE settings
 .idea/
+
+#Credentials
+src/integrations/mercadolibre/credentials/credentials.yml

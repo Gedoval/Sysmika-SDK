@@ -13,3 +13,8 @@ class SysmikaUtils:
             except KeyError:
                 continue
         return obj
+
+    @staticmethod
+    def flask_data_parser(data):
+        return data.decode('UTF-8').strip('\n')
+

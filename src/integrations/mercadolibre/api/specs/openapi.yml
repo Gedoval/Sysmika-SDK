@@ -1,15 +1,15 @@
-swagger: '2.0'
+swagger: '3.0'
 info:
-  description: Global API to work with the SDK implementations
-  version: 1.0.0
-  title: Global API
+  description: API to access the MercadoLibre service in the Sysmika SDK. Provides a gateway to operations on the MercadoLibre platform
+  version: 0.1
+  title: MercadoLibre API
   contact:
     email: gaston.doval@globant.com
 tags:
   - name: admins
     description: QA/Production secured calls
   - name: developers
-    description: Endpoints used for development
+    description: Endpoints used for development and testing
 
 paths:
   /user/test:
@@ -17,12 +17,12 @@ paths:
       tags:
         - developers
       summary: Creates a test user on a MercadoLibre account
-      operationId: test.test
-      description: |
-        By passing the TG-Code for a specific MercadoLibre app, the endpoint will generate an access token
-        and then create a test user. This user cna be used to test the basic actions on the MercadoLibre platform
+      operationId: create_test_user
       produces:
         - application/json
+      description: |
+        By passing the TG-Code for a specific MercadoLibre app, the endpoint will generate an access token
+        and then create a test user. This user can be used to test the basic actions on the MercadoLibre platform
       responses:
         200:
           description: User created
@@ -34,6 +34,9 @@ paths:
           description: Authentication code needed to create an access token
           required: true
           type: string
+        - in: header
+          type: string
+          name: REDIRECT_URL
 definitions:
   #TODO
 

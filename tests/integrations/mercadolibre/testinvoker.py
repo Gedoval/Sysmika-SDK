@@ -4,6 +4,7 @@ from src.integrations.mercadolibre.model.access_token import AccessToken
 from src.integrations.mercadolibre.exceptions.mercadolibre_exceptions import *
 import requests_mock
 import os
+import yaml
 
 
 class TestMercadoLibreInvoker:
@@ -17,9 +18,9 @@ class TestMercadoLibreInvoker:
                 json=open(TestMercadoLibreInvoker.target_dir + "/resources/auth_token.json").read()
             )
             access_token = MercadoLibreAPICaller(
-                api_key="0000000",
-                api_secret="ffffff"
-                ).get_access_token(
+                app_id="gggggg",
+                app_secret="0000000"
+            ).get_access_token(
                 "TG-60b306c54e5c030007cf0e61-52073370",
                 "https://google.com"
             )
@@ -35,9 +36,9 @@ class TestMercadoLibreInvoker:
             )
             try:
                 MercadoLibreAPICaller(
-                    api_key="gggggg",
-                    api_secret="0000000"
-                    ).get_access_token(
+                    app_id="gggggg",
+                    app_secret="0000000"
+                ).get_access_token(
                     "TG-60b306c54e5c030007cf0e61-52073370",
                     "https://google.com"
                 )
@@ -53,14 +54,15 @@ class TestMercadoLibreInvoker:
                 status_code=200
             )
             refresh_token = MercadoLibreAPICaller(
-                api_key="0000000",
-                api_secret="ffffff"
-                ).refresh_access_token(
+                app_id="gggggg",
+                app_secret="0000000"
+            ).refresh_access_token(
                 "TG-60b306c54e5c030007cf0e61-52073370"
             )
             assert refresh_token is not None
             assert refresh_token.access_token is not None
-            assert refresh_token.access_token in open(TestMercadoLibreInvoker.target_dir + "/resources/refresh_token_success.json").read()
+            assert refresh_token.access_token in open(
+                TestMercadoLibreInvoker.target_dir + "/resources/refresh_token_success.json").read()
 
     def test_parse_grant_error_response(self):
         with requests_mock.Mocker() as m:
@@ -71,14 +73,24 @@ class TestMercadoLibreInvoker:
             )
             try:
                 MercadoLibreAPICaller(
-                    api_key="gggggg",
-                    api_secret="0000000"
-                    ).refresh_access_token(
+                    app_id="gggggg",
+                    app_secret="0000000"
+                ).refresh_access_token(
                     "TG-60b306c54e5c030007cf0e61-52073370"
                 )
             except AuthTokenGenerationError as err:
                 assert str(err.status) in str(400)
                 assert err.message in open(TestMercadoLibreInvoker.target_dir + "/resources/invalid_grant.json").read()
 
-
-
+    def test_set_credentials_from_file(self):
+        mer = MercadoLibreAPICaller(cred_file="credentials.example.yml")
+        creds = yaml.safe_load(open(TestMercadoLibreInvoker.target_dir + "/resources/mock_credentials.yml")).get(
+            "credentials").get("api")
+        assert mer is not None
+        assert creds is not None
+        assert creds.get("app_id")
+        assert creds.get("app_secret")
+        assert mer.builder.get_app_id() is not None
+        assert mer.builder.get_app_secret() is not None
+        assert mer.builder.get_app_secret() in creds.get("app_secret")
+        assert mer.builder.get_app_id() == creds.get("app_id")
