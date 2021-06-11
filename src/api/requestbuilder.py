@@ -48,7 +48,7 @@ class RequestBuilder:
     def set_api_credentials_from_file(self, file):
         with open(file, "r") as stream:
             try:
-                creds = yaml.safe_load(stream).get("credentials").get("api")
+                creds = yaml.safe_load(stream).get("credentials").get("invoker")
                 self.__app_id = creds.get("app_id")
                 self.__app_secret = creds.get("app_secret")
             except yaml.YAMLError as exc:

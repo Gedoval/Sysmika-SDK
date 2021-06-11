@@ -1,4 +1,4 @@
-from src.integrations.mercadolibre.api.mercadolibre_invoker import MercadoLibreAPICaller
+from src.integrations.mercadolibre.invoker.mercadolibre_invoker import MercadoLibreAPICaller
 from src.integrations.mercadolibre.constants.constants import MercadoLibreConstants
 from src.integrations.mercadolibre.model.access_token import AccessToken
 from src.integrations.mercadolibre.exceptions.mercadolibre_exceptions import *
@@ -85,7 +85,7 @@ class TestMercadoLibreInvoker:
     def test_set_credentials_from_file(self):
         mer = MercadoLibreAPICaller(cred_file="credentials.example.yml")
         creds = yaml.safe_load(open(TestMercadoLibreInvoker.target_dir + "/resources/mock_credentials.yml")).get(
-            "credentials").get("api")
+            "credentials").get("invoker")
         assert mer is not None
         assert creds is not None
         assert creds.get("app_id")

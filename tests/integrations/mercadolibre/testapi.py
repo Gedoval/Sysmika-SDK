@@ -1,7 +1,7 @@
 import pytest
 from src.integrations.mercadolibre.constants.constants import MercadoLibreConstants
 from src.integrations.mercadolibre.exceptions.mercadolibre_exceptions import *
-from src.integrations.mercadolibre.api.app import create_app as app
+from src.integrations.mercadolibre.inbound.app import create_app as app
 from src.utils.Utils import SysmikaUtils
 from src.integrations.mercadolibre.model.test_user import TestUser
 import requests_mock
@@ -35,7 +35,7 @@ class TestMercadoLibreApi:
                 "site_id": "MLA"
             }
 
-            response = client.get("/user/test", headers=headers)
+            response = client.get("/test/user", headers=headers)
             assert response is not None
             assert response.status_code is 200
             data = response.data.decode('UTF-8').strip('\n')
