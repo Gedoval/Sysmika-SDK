@@ -41,7 +41,7 @@ definitions:
   #TODO
 
 host: localhost
-basePath: /Sysmika/api/meli
+basePath: /Sysmika/invoker/meli
 schemes:
   - https
   - http

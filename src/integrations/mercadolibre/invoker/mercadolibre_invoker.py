@@ -50,7 +50,7 @@ class MercadoLibreAPICaller(RestApiInvoker):
         return access_token
 
     def create_mercado_libre_test_user(self, app_token, site):
-        headers = {"Authorization": "Bearer " + app_token, "Content-Type": "application/json" }
+        headers = {"Authorization": "Bearer " + app_token, "Content-Type": "application/json"}
         client = RestApiInvoker().make_post_request(
             MercadoLibreConstants.API_HOST,
             MercadoLibreConstants.TEST_USER_URL,
