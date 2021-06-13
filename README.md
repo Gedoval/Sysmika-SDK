@@ -22,7 +22,9 @@ Each service exposes an API, which is defined using the [OpenAPI](https://swagge
 
 # Installation
 
-For development for now just set a pipenv using the Pipfile of the repo for dependencies.
+For development for now just set a pipenv using the Pipfile of the repo for dependencies. In __integrations/<service>/credentials we havw two YAML files: 
+* One to hold real credentials (__credentials.yml__)
+* One to hold mock credentials (__credentials.example.yml__)
 
 `TODO: build a dist package`
 
@@ -33,7 +35,7 @@ For development for now just set a pipenv using the Pipfile of the repo for depe
 To run the Flask server (Windows):
 
 * On cmd type:
-  * __set FLASK_APP=run:run_app()__
+  * __set FLASK_APP=run:run_app()__ // If we pass False to run_app, the Flask application will use Production credentials
   *  __set FLASK_ENV=development__
   * Go the directory __inbound__ in the integration folder (for example: __src/integrations/mercadolibre/inbound__)
   * Run __flask run__ . Use --port to change the port of the server (default is 5000)  

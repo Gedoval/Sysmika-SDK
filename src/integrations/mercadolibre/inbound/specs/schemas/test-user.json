@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "TestUser",
+  "title": "MercadoLibre test user",
+  "description": "User used for tests on the MercadoLibre platform",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Test user Id",
+      "type": "string"
+    },
+    "nickname": {
+      "description" : "Name of the test user",
+      "type": "string"
+    },
+    "password": {
+      "description": "Password for the user",
+      "type": "string"
+    },
+    "site_status": {
+      "description": "Indicates if the user is active or not",
+      "type": "string"
+    }
+  },
+  "required": ["nickname", "password"]
+}
