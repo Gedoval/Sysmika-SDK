@@ -1,12 +1,9 @@
 import pytest
-from src.integrations.mercadolibre.constants.constants import MercadoLibreConstants
-from src.integrations.mercadolibre.exceptions.mercadolibre_exceptions import *
 from src.integrations.mercadolibre.inbound.app import create_app as app
-from src.utils.Utils import SysmikaUtils
-from src.integrations.mercadolibre.model.test_user import TestUser
+from src.integrations.mercadolibre.model.access_token import AccessToken
 import requests_mock
-import os
-import json
+import os, json
+from src.integrations.mercadolibre.constants.constants import Constants as Consts
 from src.utils.Utils import SysmikaUtils
 from src.integrations.mercadolibre.model.test_user import TestUser
 
@@ -17,29 +14,65 @@ class TestMercadoLibreApi:
 
     @pytest.fixture
     def client(self):
-        with app().test_client() as client:
+        with app(cred_file="credentials.example.yml").test_client() as client:
             yield client
 
     def test_create_test_user(self, client):
         with requests_mock.Mocker() as m:
             m.post(
-                url=MercadoLibreConstants.API_HOST + MercadoLibreConstants.TOKEN_URL,
-                json=open(TestMercadoLibreApi.target_dir + "/resources/auth_token.json").read()
+                url=Consts.API_HOST + Consts.TOKEN_URL,
+                json=json.load(open(TestMercadoLibreApi.target_dir + "/resources/auth_token.json"))
             )
             m.post(
-                url=MercadoLibreConstants.API_HOST + MercadoLibreConstants.TEST_USER_URL,
-                json=open(TestMercadoLibreApi.target_dir + "/resources/test_user.json").read()
+                url=Consts.API_HOST + Consts.TEST_USER_URL,
+                json=json.load(open(TestMercadoLibreApi.target_dir + "/resources/test_user.json"))
             )
             headers = {
-                "app_token": "asdadasd",
-                "site_id": "MLA"
+                Consts.APP_TOKEN: "asdadasd",
+                Consts.SITE: "MLA"
             }
 
-            response = client.get("/test/user", headers=headers)
+            response = client.get(Consts.CREATE_TEST_USER, headers=headers)
             assert response is not None
             assert response.status_code is 200
-            data = response.data.decode('UTF-8').strip('\n')
-            test_user = SysmikaUtils.json_parser(data, TestUser())
+            data = SysmikaUtils.flask_data_parser(response.data)
+            test_user = SysmikaUtils.json_parser(json.loads(data), TestUser())
             assert test_user is not None and isinstance(test_user, TestUser)
 
+    def test_get_access_token(self, client):
+        with requests_mock.Mocker() as m:
+            m.post(
+                url=Consts.API_HOST + Consts.TOKEN_URL,
+                json=json.load(open(TestMercadoLibreApi.target_dir + "/resources/auth_token.json"))
+            )
+            headers = {
+                Consts.TG_CODE: "TG-1234",
+                Consts.REDIRECT_URL: "http://asd.com"
+            }
 
+            response = client.get(Consts.GET_ACCESS_TOKEN, headers=headers)
+            assert response is not None
+            assert response.status_code is 200
+            data = SysmikaUtils.flask_data_parser(response.data)
+            access_token = SysmikaUtils.json_parser(json.loads(data), AccessToken())
+            assert access_token is not None and isinstance(access_token, AccessToken)
+            assert access_token.access_token is not None
+
+    def test_refresh_token(self, client):
+        with requests_mock.Mocker() as m:
+            m.post(
+                url=Consts.API_HOST + Consts.TOKEN_URL,
+                json=json.load(open(TestMercadoLibreApi.target_dir + "/resources/auth_token.json"))
+            )
+            headers = {
+                Consts.REFRESH_TOKEN: "TG-1234",
+            }
+
+            response = client.get(Consts.REFRESH_ACCESS_TOKEN, headers=headers)
+            assert response is not None
+            assert response.status_code is 200
+            data = SysmikaUtils.flask_data_parser(response.data)
+            access_token = SysmikaUtils.json_parser(json.loads(data), AccessToken())
+            assert access_token is not None and isinstance(access_token, AccessToken)
+            assert access_token.access_token is not None
+            assert access_token.refresh_token is not None

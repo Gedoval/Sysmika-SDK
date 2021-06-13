@@ -1,5 +1,5 @@
 from src.api.requestbuilder import RequestBuilder
-from src.integrations.mercadolibre.constants.constants import MercadoLibreConstants as Consts
+from src.integrations.mercadolibre.constants.constants import Constants as Consts
 
 
 class RestApiInvoker:

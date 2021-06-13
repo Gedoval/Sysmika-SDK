@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "AccessToken",
+  "title": "Access token object",
+  "description": "Holds  data about an access token in the MercadoLibre platform",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "description": "The token",
+      "type": "string"
+    },
+    "token_type": {
+      "description" : "Type of token. Default is bearer",
+      "type": "string"
+    },
+    "expires_in": {
+      "description": "Time to live",
+      "type": "integer"
+    },
+    "scope": {
+      "description": "Permissions based on the app that created the token",
+      "type": "string"
+    },
+    "user_id":{
+      "description": "Id of the user that created the token",
+      "type": "integer"
+    },
+    "refresh_token": {
+      "description": "Code needed to generate a new Access Token without a TG_Code",
+      "type": "string"
+    }
+  },
+  "required": ["access_token", "refresh_token"]
+}

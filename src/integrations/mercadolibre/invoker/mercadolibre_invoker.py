@@ -1,12 +1,11 @@
 from src.api.restapiinvoker import RestApiInvoker
-from src.integrations.mercadolibre.constants.constants import MercadoLibreConstants
 from src.integrations.mercadolibre.model.access_token import AccessToken
 from src.integrations.mercadolibre.exceptions.mercadolibre_exceptions import *
 from src.integrations.mercadolibre.model.test_user import TestUser
 from src.utils.Utils import SysmikaUtils
 import requests
 import os
-from src.integrations.mercadolibre.constants.constants import MercadoLibreConstants as Consts
+from src.integrations.mercadolibre.constants.constants import Constants as Consts
 
 
 class MercadoLibreAPICaller(RestApiInvoker):
@@ -20,8 +19,8 @@ class MercadoLibreAPICaller(RestApiInvoker):
     def get_access_token(self, tg_code, request_url):
         headers = {"content-type": "application/x-www-form-urlencoded", "accept": "application/json"}
         client = self.make_post_request(
-            MercadoLibreConstants.API_HOST,
-            MercadoLibreConstants.TOKEN_URL,
+            Consts.API_HOST,
+            Consts.TOKEN_URL,
             headers,
             None,
             self.create_token_request_body(tg_code, request_url)
@@ -36,8 +35,8 @@ class MercadoLibreAPICaller(RestApiInvoker):
     def refresh_access_token(self, refresh_code):
         headers = {"content-type": "application/x-www-form-urlencoded", "accept": "application/json"}
         client = self.make_post_request(
-            MercadoLibreConstants.API_HOST,
-            MercadoLibreConstants.TOKEN_URL,
+            Consts.API_HOST,
+            Consts.TOKEN_URL,
             headers,
             None,
             self.refresh_token_request_body(refresh_code)
@@ -51,15 +50,19 @@ class MercadoLibreAPICaller(RestApiInvoker):
 
     def create_mercado_libre_test_user(self, app_token, site):
         headers = {"Authorization": "Bearer " + app_token, "Content-Type": "application/json"}
-        client = RestApiInvoker().make_post_request(
-            MercadoLibreConstants.API_HOST,
-            MercadoLibreConstants.TEST_USER_URL,
+        site_body = '{"site_id":' + '"' + site + '"' + '}'
+        client = self.make_post_request(
+            Consts.API_HOST,
+            Consts.TEST_USER_URL,
             headers,
             None,
-            {"site_id": site}
+            site_body
         )
         response = requests.post(client.host + client.url, data=client.post_body, headers=client.header)
-        test_user = SysmikaUtils.json_parser(response.json(), TestUser())
+        if response.status_code is not 200:
+            raise SysmikaUtils.json_parser(response.json(), UserCreationError())
+        else:
+            test_user = SysmikaUtils.json_parser(response.json(), TestUser())
         return test_user
 
     def create_token_request_body(self, tg_code, redirect_url):
