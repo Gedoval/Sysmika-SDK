@@ -1,0 +1,263 @@
+{
+	"categories": [{
+		"id": "MLA374730",
+		"name": "Camas Nauticas",
+		"total_items_in_this_category": 325,
+		"children_categories": [{
+			"id": "MLA374731",
+			"name": "Alquiler",
+			"total_items_in_this_category": 97
+		}, {
+			"id": "MLA374732",
+			"name": "Venta",
+			"total_items_in_this_category": 227
+		}]
+	}, {
+		"id": "MLA1496",
+		"name": "Campos",
+		"total_items_in_this_category": 5763,
+		"children_categories": [{
+			"id": "MLA6414",
+			"name": "Alquiler",
+			"total_items_in_this_category": 93
+		}, {
+			"id": "MLA6413",
+			"name": "Venta",
+			"total_items_in_this_category": 5670
+		}]
+	}, {
+		"id": "MLA1466",
+		"name": "Casas",
+		"total_items_in_this_category": 173017,
+		"children_categories": [{
+			"id": "MLA1467",
+			"name": "Alquiler",
+			"total_items_in_this_category": 3848
+		}, {
+			"id": "MLA50278",
+			"name": "Alquiler Temporario",
+			"total_items_in_this_category": 9495
+		}, {
+			"id": "MLA1468",
+			"name": "Venta",
+			"total_items_in_this_category": 159674,
+			"children_categories": [{
+				"id": "MLA401805",
+				"name": "Emprendimientos",
+				"total_items_in_this_category": 101
+			}, {
+				"id": "MLA401685",
+				"name": "Propiedades Individuales",
+				"total_items_in_this_category": 159577
+			}]
+		}]
+	}, {
+		"id": "MLA50541",
+		"name": "Cocheras",
+		"total_items_in_this_category": 9816,
+		"children_categories": [{
+			"id": "MLA50542",
+			"name": "Alquiler",
+			"total_items_in_this_category": 1028
+		}, {
+			"id": "MLA50543",
+			"name": "Venta",
+			"total_items_in_this_category": 8911
+		}]
+	}, {
+		"id": "MLA392265",
+		"name": "Consultorios",
+		"total_items_in_this_category": 499,
+		"children_categories": [{
+			"id": "MLA392266",
+			"name": "Alquiler",
+			"total_items_in_this_category": 392
+		}, {
+			"id": "MLA392267",
+			"name": "Venta",
+			"total_items_in_this_category": 103
+		}]
+	}, {
+		"id": "MLA1472",
+		"name": "Departamentos",
+		"total_items_in_this_category": 279007,
+		"children_categories": [{
+			"id": "MLA1473",
+			"name": "Alquiler",
+			"total_items_in_this_category": 13398
+		}, {
+			"id": "MLA50279",
+			"name": "Alquiler Temporario",
+			"total_items_in_this_category": 20768
+		}, {
+			"id": "MLA1474",
+			"name": "Venta",
+			"total_items_in_this_category": 245434,
+			"children_categories": [{
+				"id": "MLA401806",
+				"name": "Emprendimientos",
+				"total_items_in_this_category": 1479
+			}, {
+				"id": "MLA401686",
+				"name": "Propiedades Individuales",
+				"total_items_in_this_category": 243382
+			}]
+		}]
+	}, {
+		"id": "MLA1475",
+		"name": "Depositos y Galpones",
+		"total_items_in_this_category": 11659,
+		"children_categories": [{
+			"id": "MLA1476",
+			"name": "Alquiler",
+			"total_items_in_this_category": 4473
+		}, {
+			"id": "MLA1477",
+			"name": "Venta",
+			"total_items_in_this_category": 7191
+		}]
+	}, {
+		"id": "MLA50545",
+		"name": "Fondo de Comercio",
+		"total_items_in_this_category": 3007,
+		"children_categories": [{
+			"id": "MLA50546",
+			"name": "Alquiler",
+			"total_items_in_this_category": 94
+		}, {
+			"id": "MLA50550",
+			"name": "Venta",
+			"total_items_in_this_category": 2916
+		}]
+	}, {
+		"id": "MLA79242",
+		"name": "Locales",
+		"total_items_in_this_category": 23467,
+		"children_categories": [{
+			"id": "MLA79243",
+			"name": "Alquiler",
+			"total_items_in_this_category": 8984
+		}, {
+			"id": "MLA79244",
+			"name": "Venta",
+			"total_items_in_this_category": 14488
+		}]
+	}, {
+		"id": "MLA50538",
+		"name": "Oficinas",
+		"total_items_in_this_category": 16824,
+		"children_categories": [{
+			"id": "MLA50539",
+			"name": "Alquiler",
+			"total_items_in_this_category": 8345
+		}, {
+			"id": "MLA50540",
+			"name": "Venta",
+			"total_items_in_this_category": 8559,
+			"children_categories": [{
+				"id": "MLA401804",
+				"name": "Emprendimientos",
+				"total_items_in_this_category": 18
+			}, {
+				"id": "MLA401684",
+				"name": "Propiedades Individuales",
+				"total_items_in_this_category": 8543
+			}]
+		}]
+	}, {
+		"id": "MLA50544",
+		"name": "Parcelas, Nichos y Bovedas",
+		"total_items_in_this_category": 408,
+		"children_categories": [{
+			"id": "MLA50548",
+			"name": "Venta",
+			"total_items_in_this_category": 408
+		}]
+	}, {
+		"id": "MLA105179",
+		"name": "PH",
+		"total_items_in_this_category": 28053,
+		"children_categories": [{
+			"id": "MLA105181",
+			"name": "Alquiler",
+			"total_items_in_this_category": 807
+		}, {
+			"id": "MLA105180",
+			"name": "Alquiler Temporario",
+			"total_items_in_this_category": 260
+		}, {
+			"id": "MLA105182",
+			"name": "Venta",
+			"total_items_in_this_category": 27003
+		}]
+	}, {
+		"id": "MLA50547",
+		"name": "Quintas",
+		"total_items_in_this_category": 4960,
+		"children_categories": [{
+			"id": "MLA50549",
+			"name": "Alquiler",
+			"total_items_in_this_category": 104
+		}, {
+			"id": "MLA52745",
+			"name": "Alquiler Temporario",
+			"total_items_in_this_category": 1094
+		}, {
+			"id": "MLA50551",
+			"name": "Venta",
+			"total_items_in_this_category": 3762
+		}]
+	}, {
+		"id": "MLA1493",
+		"name": "Terrenos y Lotes",
+		"total_items_in_this_category": 88644,
+		"children_categories": [{
+			"id": "MLA1494",
+			"name": "Alquiler",
+			"total_items_in_this_category": 684
+		}, {
+			"id": "MLA1495",
+			"name": "Venta",
+			"total_items_in_this_category": 88455,
+			"children_categories": [{
+				"id": "MLA401803",
+				"name": "Emprendimientos",
+				"total_items_in_this_category": 164
+			}, {
+				"id": "MLA401687",
+				"name": "Propiedades Individuales",
+				"total_items_in_this_category": 88290
+			}]
+		}]
+	}, {
+		"id": "MLA50536",
+		"name": "Tiempo Compartido",
+		"total_items_in_this_category": 293,
+		"children_categories": [{
+			"id": "MLA52741",
+			"name": "Alquiler Temporario",
+			"total_items_in_this_category": 177
+		}, {
+			"id": "MLA50537",
+			"name": "Venta",
+			"total_items_in_this_category": 114
+		}]
+	}, {
+		"id": "MLA1892",
+		"name": "Otros Inmuebles",
+		"total_items_in_this_category": 6427,
+		"children_categories": [{
+			"id": "MLA6395",
+			"name": "Alquiler",
+			"total_items_in_this_category": 389
+		}, {
+			"id": "MLA50283",
+			"name": "Alquiler Temporario",
+			"total_items_in_this_category": 725
+		}, {
+			"id": "MLA6396",
+			"name": "Venta",
+			"total_items_in_this_category": 5314
+		}]
+	}]
+}

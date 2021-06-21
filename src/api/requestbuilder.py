@@ -62,3 +62,6 @@ class RequestBuilder:
 
     def get_app_token(self):
         return self.__app_token
+
+    def set_app_token(self, token):
+        self.__app_token = token

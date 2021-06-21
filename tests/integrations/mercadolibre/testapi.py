@@ -14,7 +14,7 @@ class TestMercadoLibreApi:
 
     @pytest.fixture
     def client(self):
-        with app(cred_file="credentials.example.yml").test_client() as client:
+        with app().test_client() as client:
             yield client
 
     def test_create_test_user(self, client):
@@ -47,7 +47,9 @@ class TestMercadoLibreApi:
             )
             headers = {
                 Consts.TG_CODE: "TG-1234",
-                Consts.REDIRECT_URL: "http://asd.com"
+                Consts.REDIRECT_URL: "http://asd.com",
+                Consts.APP_ID: "APP-ID",
+                Consts.APP_SECRET: "APP-Secret"
             }
 
             response = client.get(Consts.GET_ACCESS_TOKEN, headers=headers)
@@ -66,6 +68,8 @@ class TestMercadoLibreApi:
             )
             headers = {
                 Consts.REFRESH_TOKEN: "TG-1234",
+                Consts.APP_ID: "APP-ID",
+                Consts.APP_SECRET: "APP-Secret"
             }
 
             response = client.get(Consts.REFRESH_ACCESS_TOKEN, headers=headers)

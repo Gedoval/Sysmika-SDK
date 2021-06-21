@@ -1,0 +1,287 @@
+{
+	"id": "MLA839018613",
+	"site_id": "MLA",
+	"title": "Property Title",
+	"subtitle": null,
+	"seller_id": 526655030,
+	"category_id": "MLA401686",
+	"official_store_id": null,
+	"price": 100000,
+	"base_price": 100000,
+	"original_price": null,
+	"inventory_id": null,
+	"currency_id": "ARS",
+	"initial_quantity": 1,
+	"available_quantity": 1,
+	"sold_quantity": 0,
+	"sale_terms": [],
+	"buying_mode": "classified",
+	"listing_type_id": "silver",
+	"start_time": "2020-02-13T19:29:01.499Z",
+	"stop_time": "2020-05-14T04:00:00.000Z",
+	"end_time": "2020-05-14T04:00:00.000Z",
+	"expiration_time": null,
+	"condition": "not_specified",
+	"permalink": "http://departamento.mercadolibre.com.ar/MLA-839018613-property-title-_JM",
+	"pictures": [{
+		"id": "910707-MLA40763776324_022020",
+		"url": "http://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-ES.jpg",
+		"secure_url": "https://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-ES.jpg",
+		"size": "500x500",
+		"max_size": "500x500",
+		"quality": ""
+	}],
+	"video_id": null,
+	"descriptions": [{
+		"id": "MLA839018613-2516619253"
+	}],
+	"accepts_mercadopago": false,
+	"non_mercado_pago_payment_methods": [],
+	"shipping": {
+		"mode": "not_specified",
+		"local_pick_up": false,
+		"free_shipping": false,
+		"methods": [],
+		"dimensions": null,
+		"tags": [],
+		"logistic_type": null,
+		"store_pick_up": false
+	},
+	"international_delivery_mode": "none",
+	"seller_address": {
+		"id": 1087750186,
+		"comment": "Referencia: The Testing Cavern",
+		"address_line": "Testing Street 1450",
+		"zip_code": "1430",
+		"city": {
+			"id": "TUxBQlNBQTM3Mzda",
+			"name": "Saavedra"
+		},
+		"state": {
+			"id": "AR-C",
+			"name": "Capital Federal"
+		},
+		"country": {
+			"id": "AR",
+			"name": "Argentina"
+		},
+		"latitude": -34.5545188,
+		"longitude": -58.4915986,
+		"search_location": {
+			"neighborhood": {
+				"id": "TUxBQlNBQTM3Mzda",
+				"name": "Saavedra"
+			},
+			"city": {
+				"id": "TUxBQ0NBUGZlZG1sYQ",
+				"name": "Capital Federal"
+			},
+			"state": {
+				"id": "TUxBUENBUGw3M2E1",
+				"name": "Capital Federal"
+			}
+		}
+	},
+	"seller_contact": {
+		"contact": "Contact name",
+		"other_info": "Additional contact info",
+		"area_code": "011",
+		"phone": "4444-5555",
+		"area_code2": "",
+		"phone2": "",
+		"email": "contact-email@somedomain.com",
+		"webpage": "",
+		"country_code": "",
+		"country_code2": ""
+	},
+	"location": {
+		"address_line": "My property address 1234",
+		"zip_code": "01234567",
+		"neighborhood": {
+			"id": "TUxBQlBBUzgyNjBa",
+			"name": "Paso del Rey"
+		},
+		"city": {
+			"id": "TUxBQ01PUmViMTE3",
+			"name": "Moreno"
+		},
+		"state": {
+			"id": "TUxBUEdSQWVmNTVm",
+			"name": "Bs.as. G.b.a. Oeste"
+		},
+		"country": {
+			"id": "AR",
+			"name": "Argentina"
+		},
+		"latitude": -34.48755,
+		"longitude": -58.56987,
+		"open_hours": ""
+	},
+	"geolocation": {
+		"latitude": -34.48755,
+		"longitude": -58.56987
+	},
+	"coverage_areas": [],
+	"attributes": [{
+			"id": "ROOMS",
+			"name": "Ambientes",
+			"value_id": null,
+			"value_name": "2",
+			"value_struct": null,
+			"values": [{
+				"id": null,
+				"name": "2",
+				"struct": null
+			}],
+			"attribute_group_id": "FIND",
+			"attribute_group_name": "Ficha técnica"
+		},
+		{
+			"id": "FULL_BATHROOMS",
+			"name": "Baños",
+			"value_id": null,
+			"value_name": "1",
+			"value_struct": null,
+			"values": [{
+				"id": null,
+				"name": "1",
+				"struct": null
+			}],
+			"attribute_group_id": "FIND",
+			"attribute_group_name": "Ficha técnica"
+		},
+		{
+			"id": "PARKING_LOTS",
+			"name": "Cocheras",
+			"value_id": null,
+			"value_name": "1",
+			"value_struct": null,
+			"values": [{
+				"id": null,
+				"name": "1",
+				"struct": null
+			}],
+			"attribute_group_id": "FIND",
+			"attribute_group_name": "Ficha técnica"
+		},
+		{
+			"id": "BEDROOMS",
+			"name": "Dormitorios",
+			"value_id": null,
+			"value_name": "4",
+			"value_struct": null,
+			"values": [{
+				"id": null,
+				"name": "4",
+				"struct": null
+			}],
+			"attribute_group_id": "FIND",
+			"attribute_group_name": "Ficha técnica"
+		},
+		{
+			"id": "COVERED_AREA",
+			"name": "Superficie cubierta",
+			"value_id": null,
+			"value_name": "30 m²",
+			"value_struct": {
+				"number": 30,
+				"unit": "m²"
+			},
+			"values": [{
+				"id": null,
+				"name": "30 m²",
+				"struct": {
+					"number": 30,
+					"unit": "m²"
+				}
+			}],
+			"attribute_group_id": "FIND",
+			"attribute_group_name": "Ficha técnica"
+		},
+		{
+			"id": "TOTAL_AREA",
+			"name": "Superficie total",
+			"value_id": null,
+			"value_name": "40 m²",
+			"value_struct": {
+				"number": 40,
+				"unit": "m²"
+			},
+			"values": [{
+				"id": null,
+				"name": "40 m²",
+				"struct": {
+					"number": 40,
+					"unit": "m²"
+				}
+			}],
+			"attribute_group_id": "FIND",
+			"attribute_group_name": "Ficha técnica"
+		},
+		{
+			"id": "PROPERTY_TYPE",
+			"name": "Inmueble",
+			"value_id": "242062",
+			"value_name": "Departamento",
+			"value_struct": null,
+			"values": [{
+				"id": "242062",
+				"name": "Departamento",
+				"struct": null
+			}],
+			"attribute_group_id": "MAIN",
+			"attribute_group_name": "Principales"
+		},
+		{
+			"id": "OPERATION",
+			"name": "Operación",
+			"value_id": "242075",
+			"value_name": "Venta",
+			"value_struct": null,
+			"values": [{
+				"id": "242075",
+				"name": "Venta",
+				"struct": null
+			}],
+			"attribute_group_id": "MAIN",
+			"attribute_group_name": "Principales"
+		},
+		{
+			"id": "OPERATION_SUBTYPE",
+			"name": "Subtipo de operación",
+			"value_id": "244562",
+			"value_name": "Propiedad individual",
+			"value_struct": null,
+			"values": [{
+				"id": "244562",
+				"name": "Propiedad individual",
+				"struct": null
+			}],
+			"attribute_group_id": "MAIN",
+			"attribute_group_name": "Principales"
+		}
+	],
+	"warnings": [],
+	"listing_source": "",
+	"variations": [],
+	"thumbnail": "http://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/I-ES.jpg",
+	"secure_thumbnail": "https://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/I-ES.jpg",
+	"status": "active",
+	"sub_status": [],
+	"tags": [
+		"test_item"
+	],
+	"warranty": null,
+	"catalog_product_id": null,
+	"domain_id": null,
+	"seller_custom_field": null,
+	"parent_item_id": null,
+	"differential_pricing": null,
+	"deal_ids": [],
+	"automatic_relist": false,
+	"date_created": "2020-02-13T19:29:01.823Z",
+	"last_updated": "2020-02-13T19:29:01.823Z",
+	"health": null,
+	"catalog_listing": false,
+	"item_relations": []
+}

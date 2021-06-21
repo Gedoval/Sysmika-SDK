@@ -1,0 +1,97 @@
+{
+    "id": "MLA1472",
+    "name": "Departamentos",
+    "picture": "http://resources.mlstatic.com/category/images/c3536bf9-387d-42ef-9998-3530d57c0c51.png",
+    "permalink": null,
+    "total_items_in_this_category": 284083,
+    "path_from_root": [
+        {
+            "id": "MLA1459",
+            "name": "Inmuebles"
+        },
+        {
+            "id": "MLA1472",
+            "name": "Departamentos"
+        }
+    ],
+    "children_categories": [
+        {
+            "id": "MLA1473",
+            "name": "Alquiler",
+            "total_items_in_this_category": 13491
+        },
+        {
+            "id": "MLA50279",
+            "name": "Alquiler Temporario",
+            "total_items_in_this_category": 20794
+        },
+        {
+            "id": "MLA1474",
+            "name": "Venta",
+            "total_items_in_this_category": 249675
+        }
+    ],
+    "attribute_types": "none",
+    "settings": {
+        "adult_content": false,
+        "buying_allowed": false,
+        "buying_modes": [
+            "classified"
+        ],
+        "catalog_domain": null,
+        "coverage_areas": "not_allowed",
+        "currencies": [
+            "USD",
+            "ARS"
+        ],
+        "fragile": false,
+        "immediate_payment": "optional",
+        "item_conditions": [
+            "not_specified",
+            "new",
+            "used"
+        ],
+        "items_reviews_allowed": false,
+        "listing_allowed": false,
+        "max_description_length": 50000,
+        "max_pictures_per_item": 30,
+        "max_pictures_per_item_var": 6,
+        "max_sub_title_length": 70,
+        "max_title_length": 200,
+        "maximum_price": null,
+        "maximum_price_currency": "ARS",
+        "minimum_price": 33,
+        "minimum_price_currency": "ARS",
+        "mirror_category": null,
+        "mirror_master_category": null,
+        "mirror_slave_categories": [],
+        "price": "required",
+        "reservation_allowed": "not_allowed",
+        "restrictions": [],
+        "rounded_address": false,
+        "seller_contact": "optional",
+        "shipping_modes": [
+            "custom",
+            "not_specified"
+        ],
+        "shipping_options": [],
+        "shipping_profile": "not_allowed",
+        "show_contact_information": true,
+        "simple_shipping": "not_allowed",
+        "stock": "required",
+        "sub_vertical": "properties",
+        "subscribable": false,
+        "tags": [],
+        "vertical": "real_estate",
+        "vip_subdomain": "departamento",
+        "buyer_protection_programs": [
+            "delivered",
+            "undelivered"
+        ],
+        "status": "enabled"
+    },
+    "channels_settings": [],
+    "meta_categ_id": null,
+    "attributable": false,
+    "date_created": "2018-04-25T08:12:56.000Z"
+}

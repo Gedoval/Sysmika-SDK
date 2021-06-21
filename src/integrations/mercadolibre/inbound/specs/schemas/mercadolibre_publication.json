@@ -1,0 +1,365 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "MercadoLibrePublication",
+	"type": "object",
+	"title": "MercadoLibre real state publication",
+	"description": "Data needed to successfully make a publication on MercadoLibre.",
+	"default": {},
+	"required": [
+		"title",
+		"category_id",
+		"price",
+		"currency_id",
+		"available_quantity",
+		"buying_mode",
+		"listing_type_id",
+		"condition",
+		"pictures",
+		"seller_contact",
+		"location",
+		"attributes",
+		"video_id",
+		"description"
+	],
+	"properties": {
+		"title": {
+			"$id": "#/properties/title",
+			"type": "string",
+			"description": "Title of the publication.",
+			"default": "",
+			"examples": [
+				"Alquiler Departamento 2 ambientes Lanus"
+			]
+		},
+		"category_id": {
+			"$id": "#/properties/category_id",
+			"type": "string",
+			"description": "Category Id. Comes from the last child of the type of publication.",
+			"default": "",
+			"examples": [
+				"MLA401686"
+			]
+		},
+		"price": {
+			"$id": "#/properties/price",
+			"type": "integer",
+			"description": "Price of the publication.",
+			"default": 0,
+			"examples": [
+				100000
+			]
+		},
+		"currency_id": {
+			"$id": "#/properties/currency_id",
+			"type": "string",
+			"description": "Currency Id.",
+			"default": "",
+			"examples": [
+				"ARS"
+			]
+		},
+		"available_quantity": {
+			"$id": "#/properties/available_quantity",
+			"type": "integer",
+			"description": "Always 1.",
+			"default": 1,
+			"examples": [
+				1
+			]
+		},
+		"buying_mode": {
+			"$id": "#/properties/buying_mode",
+			"type": "string",
+			"default": "",
+			"examples": [
+				"classified"
+			]
+		},
+		"listing_type_id": {
+			"$id": "#/properties/listing_type_id",
+			"type": "string",
+			"description": "Type of listing. Comes from the type of product bought by the publisher.",
+			"default": "",
+			"examples": [
+				"silver"
+			]
+		},
+		"condition": {
+			"$id": "#/properties/condition",
+			"type": "string",
+			"default": "",
+			"examples": [
+				"not_specified"
+			]
+		},
+		"pictures": {
+			"$id": "#/properties/pictures",
+			"type": "array",
+			"default": [],
+			"examples": [
+				[{
+					"source": "http://mla-d2-p.mlstatic.com/item-de-test-no-ofertar-543605-MLA25041518406_092016-O.jpg?square=false"
+				}]
+			]
+		},
+		"seller_contact": {
+			"$id": "#/properties/seller_contact",
+			"type": "object",
+			"title": "The seller_contact schema",
+			"description": "Contact information of the publisher.",
+			"default": {},
+			"examples": [{
+				"contact": "Contact name",
+				"other_info": "Additional contact info",
+				"area_code": "011",
+				"phone": "4444-5555",
+				"area_code2": "",
+				"phone2": "",
+				"email": "contact-email@somedomain.com",
+				"webmail": ""
+			}],
+			"required": [
+				"contact",
+				"other_info",
+				"area_code",
+				"phone",
+				"area_code2",
+				"phone2",
+				"email",
+				"webmail"
+			],
+			"properties": {
+				"contact": {
+					"$id": "#/properties/seller_contact/properties/contact",
+					"type": "string",
+					"default": "",
+					"examples": [
+						"Armando Esteban Quito"
+					]
+				},
+				"other_info": {
+					"$id": "#/properties/seller_contact/properties/other_info",
+					"type": "string",
+					"default": "",
+					"examples": [
+						"Additional contact info"
+					]
+				},
+				"area_code": {
+					"$id": "#/properties/seller_contact/properties/area_code",
+					"type": "string",
+					"default": "",
+					"examples": [
+						"011"
+					]
+				},
+				"phone": {
+					"$id": "#/properties/seller_contact/properties/phone",
+					"type": "string",
+					"default": "",
+					"examples": [
+						"4444-5555"
+					]
+				},
+				"area_code2": {
+					"$id": "#/properties/seller_contact/properties/area_code2",
+					"type": "string",
+					"default": "",
+					"examples": [
+						""
+					]
+				},
+				"phone2": {
+					"$id": "#/properties/seller_contact/properties/phone2",
+					"type": "string",
+					"default": "",
+					"examples": [
+						""
+					]
+				},
+				"email": {
+					"$id": "#/properties/seller_contact/properties/email",
+					"type": "string",
+					"default": "",
+					"examples": [
+						"contact-email@somedomain.com"
+					]
+				},
+				"webmail": {
+					"$id": "#/properties/seller_contact/properties/webmail",
+					"type": "string",
+					"default": "",
+					"examples": [
+						""
+					]
+				}
+			},
+			"additionalProperties": true
+		},
+		"location": {
+			"$id": "#/properties/location",
+			"type": "object",
+			"title": "The location schema",
+			"description": "Geolocation of the property.",
+			"default": {},
+			"examples": [{
+				"address_line": "My property address 1234",
+				"zip_code": "01234567",
+				"neighborhood": {
+					"id": "TUxBQlBBUzgyNjBa"
+				},
+				"latitude": -34.48755,
+				"longitude": -58.56987
+			}],
+			"required": [
+				"address_line",
+				"zip_code",
+				"neighborhood",
+				"latitude",
+				"longitude"
+			],
+			"properties": {
+				"address_line": {
+					"$id": "#/properties/location/properties/address_line",
+					"type": "string",
+					"default": "",
+					"examples": [
+						"My property address 1234"
+					]
+				},
+				"zip_code": {
+					"$id": "#/properties/location/properties/zip_code",
+					"type": "string",
+					"default": "",
+					"examples": [
+						"01234567"
+					]
+				},
+				"neighborhood": {
+					"$id": "#/properties/location/properties/neighborhood",
+					"type": "object",
+					"default": {},
+					"examples": [{
+						"id": "TUxBQlBBUzgyNjBa"
+					}],
+					"required": [
+						"id"
+					],
+					"properties": {
+						"id": {
+							"$id": "#/properties/location/properties/neighborhood/properties/id",
+							"type": "string",
+							"default": "",
+							"examples": [
+								"TUxBQlBBUzgyNjBa"
+							]
+						}
+					},
+					"additionalProperties": true
+				},
+				"latitude": {
+					"$id": "#/properties/location/properties/latitude",
+					"type": "number",
+					"default": 0.0,
+					"examples": [
+						-34.48755
+					]
+				},
+				"longitude": {
+					"$id": "#/properties/location/properties/longitude",
+					"type": "number",
+					"default": 0.0,
+					"examples": [
+						-58.56987
+					]
+				}
+			},
+			"additionalProperties": true
+		},
+		"attributes": {
+			"$id": "#/properties/attributes",
+			"type": "array",
+			"title": "Category attributes",
+			"description": "These are the specific attributes for the category Id. This schema holds only the required attributes, for a more comprehensive list of attributes call /categories/<category_id>.",
+			"default": [],
+			"examples": [
+				[{
+						"id": "ROOMS",
+						"value_name": "2"
+					},
+					{
+						"id": "FULL_BATHROOMS",
+						"value_name": "1"
+					},
+					{
+						"id": "PARKING_LOTS",
+						"value_name": "1"
+					},
+					{
+						"id": "BEDROOMS",
+						"value_name": "4"
+					},
+					{
+						"id": "COVERED_AREA",
+						"value_name": "30 m²"
+					},
+					{
+						"id": "TOTAL_AREA",
+						"value_name": "40 m²"
+					}
+				]
+			],
+			"additionalItems": true,
+			"items": {
+				"$id": "#/properties/attributes/items",
+				"anyOf": [{
+					"$id": "#/properties/attributes/items/anyOf/0",
+					"type": "object",
+					"default": {},
+					"examples": [{
+						"id": "ROOMS",
+						"value_name": "2"
+					}],
+					"required": [
+						"id",
+						"value_name"
+					]
+				}]
+			}
+		},
+		"video_id": {
+			"$id": "#/properties/video_id",
+			"type": "string",
+			"default": "",
+			"examples": [
+				"gqkEN9poKM;matterport"
+			]
+		},
+		"description": {
+			"$id": "#/properties/description",
+			"type": "object",
+			"title": "The description schema",
+			"description": "An explanation about the purpose of this instance.",
+			"default": {},
+			"examples": [{
+				"plain_text": "This is the real estate property description. \n"
+			}],
+			"required": [
+				"plain_text"
+			],
+			"properties": {
+				"plain_text": {
+					"$id": "#/properties/description/properties/plain_text",
+					"type": "string",
+					"title": "The plain_text schema",
+					"description": "An explanation about the purpose of this instance.",
+					"default": "",
+					"examples": [
+						"This is the real estate property description. \n"
+					]
+				}
+			}
+        }
+	},
+	"additionalProperties": true
+}

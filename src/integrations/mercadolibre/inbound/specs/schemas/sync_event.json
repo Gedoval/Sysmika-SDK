@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "SyncEvent",
+  "title": "A synchronziation event between the Sysmika Portal and the MercadoLibre platform",
+  "description": "The schema holds information about the user that initiated the transaction on the Sysmika Portal, and the information that will be sent to MercadoLibre ",
+  "type": "object",
+  "properties": {
+    "UserId": {
+      "description": "User Id on Sysmika systems",
+      "type": "string"
+    },
+    "PublicationType": {
+      "description" : "Type of real state publication",
+      "type": "string"
+    },
+    "PublicId": {
+      "description": "Transaction Id. Used to identify transactions on both the Sysmika ERP and the Sysmika SDK",
+      "type": "string"
+    },
+    "Payload": {
+      "description": "Data that will be sent to MercadoLibre",
+      "type": "object",
+      "$ref": "./sync_event.json"
+    },
+    "PublisherId": {
+      "description": "User Id on the MercadoLibre platform. This user will be used to publish the product",
+      "type": "string"
+    }
+  }
+}

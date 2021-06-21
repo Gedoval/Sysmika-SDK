@@ -22,3 +22,9 @@ class MissingHeadersError(MercadoLibreError):
 
 class UserCreationError(MercadoLibreError):
     pass
+
+
+class MissingQueryParameterError(MercadoLibreError):
+    def __init__(self, message, status):
+        self.status = status
+        self.message = message
