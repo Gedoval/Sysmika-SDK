@@ -1,7 +1,9 @@
+import json
 from src.api.restapiinvoker import RestApiInvoker
 from src.integrations.mercadolibre.model.access_token import AccessToken
 from src.integrations.mercadolibre.exceptions.mercadolibre_exceptions import *
 from src.integrations.mercadolibre.model.test_user import TestUser
+from src.integrations.mercadolibre.model.inmboliaria_categories import InmobiliariaCategories
 from src.utils.Utils import SysmikaUtils
 import requests
 import os
@@ -12,6 +14,7 @@ class MercadoLibreAPICaller(RestApiInvoker):
     def __init__(self, app_id=None, app_secret=None, app_token=None, cred_file=None):
         super().__init__(app_id=app_id, app_secret=app_secret, app_token=app_token)
         self.__set_credentials(cred_file)
+        self.__set_categories_dict()
 
     current_dir = os.path.dirname(os.path.realpath(__file__))
     target_dir = os.path.sep.join(current_dir.split(os.path.sep)[:-1])
@@ -30,6 +33,7 @@ class MercadoLibreAPICaller(RestApiInvoker):
             raise SysmikaUtils.json_parser(response.json(), AuthTokenGenerationError())
         else:
             access_token = SysmikaUtils.json_parser(response.json(), AccessToken())
+        self.__set_access_token(access_token.access_token)
         return access_token
 
     def refresh_access_token(self, refresh_code):
@@ -65,6 +69,34 @@ class MercadoLibreAPICaller(RestApiInvoker):
             test_user = SysmikaUtils.json_parser(response.json(), TestUser())
         return test_user
 
+    def get_category_attributes(self, category_id):
+        client = self.make_get_request(
+            Consts.API_HOST,
+            Consts.CATEGORIES + "/" + category_id + "/attributes",
+            None,
+            None
+        )
+        response = requests.get(client.host + client.url)
+        if response.status_code is not 200:
+            raise SysmikaUtils.json_parser(response.json(), MercadoLibreError())
+        else:
+            desc = json.dumps(response.json())
+        return desc
+
+    def get_categories(self):
+        return self.categories
+
+    def post_real_state_publication(self, body):
+        headers = {"Authorization": "Bearer " + self.builder.get_app_token(), "Content-Type": "application/json"}
+        client = self.make_post_request(
+            Consts.API_HOST,
+            Consts.ITEMS,
+            headers=headers,
+            body=body
+        )
+        response = requests.post(client.host + client.url, json=client.post_body, headers=client.header)
+        return response
+
     def create_token_request_body(self, tg_code, redirect_url):
         return "grant_type=authorization_code&" \
                "client_id=" + self.builder.get_app_id() + "&" \
@@ -82,3 +114,13 @@ class MercadoLibreAPICaller(RestApiInvoker):
         if cred_file is None:
             return
         self.builder.set_api_credentials_from_file(self.target_dir + "/credentials/" + cred_file)
+
+    def __set_categories_dict(self):
+        self.categories = InmobiliariaCategories().categories
+
+    def __set_access_token(self, token):
+        self.builder.set_app_token(token)
+
+
+
+

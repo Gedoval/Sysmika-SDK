@@ -4,9 +4,9 @@ from .app import create_app
 def run_app(dev=True):
 
     if dev:
-        app = create_app(cred_file="credentials.example.yml")
+        app = create_app()
     else:
-        app = create_app(cred_file="credentials.yml")
+        app = create_app(is_dev=False)
 
     @app.route("/")
     def im_alive():
