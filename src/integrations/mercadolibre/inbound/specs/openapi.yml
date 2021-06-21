@@ -124,7 +124,7 @@ paths:
   /auth/refresh_token:
     get:
       tags:
-        - developer
+        - developers
         - admins
       summary: Refresh the access token, before expiration (after 6 hours of being generated)
       operationId: refresh_access_token
@@ -180,8 +180,8 @@ paths:
   /categories:
     get:
       tags:
-        - developer
-        - admin
+        - developers
+        - admins
       summary: Retrieves all categories with their childs
       operationId: get_categories
       responses:
@@ -202,8 +202,8 @@ paths:
   /categories/{category_id}:
     get:
       tags:
-        - developer
-        - admin
+        - developers
+        - admins
       summary: Retrieves all attributes for a specific category
       operationId: get_inmobiliaria_category_description
       responses:
@@ -222,8 +222,8 @@ paths:
   /publish:
     post:
       tags:
-        - developer
-        - admin
+        - developers
+        - admins
       description: Publishes an offer on MercadLibre
       operationId: post_real_state_publication
       responses:

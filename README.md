@@ -22,7 +22,7 @@ Each service exposes an API, which is defined using the [OpenAPI](https://swagge
 
 # Installation
 
-For development for now just set a pipenv using the Pipfile of the repo for dependencies. In __integrations/<service>/credentials we havw two YAML files: 
+For development for now just set a pipenv using the Pipfile of the repo for dependencies. In __integrations/<service>/credentials__ we have two YAML files: 
 * One to hold real credentials (__credentials.yml__)
 * One to hold mock credentials (__credentials.example.yml__)
 
