@@ -6,5 +6,5 @@ class MercadoLibreInvokerFactory:
         pass
 
     @staticmethod
-    def create_invoker(app_id=None, app_secret=None):
-        return MercadoLibreAPICaller(app_id=app_id, app_secret=app_secret)
+    def create_invoker(app_id=None, app_secret=None, app_token=None):
+        return MercadoLibreAPICaller(app_id=app_id, app_secret=app_secret, app_token=app_token)

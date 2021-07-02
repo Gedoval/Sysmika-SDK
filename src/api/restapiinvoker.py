@@ -1,5 +1,4 @@
 from src.api.requestbuilder import RequestBuilder
-from src.integrations.mercadolibre.constants.constants import Constants as Consts
 
 
 class RestApiInvoker:
@@ -7,12 +6,12 @@ class RestApiInvoker:
         app_id = None
         app_secret = None
         app_token = None
-        if Consts.APP_ID in kwargs:
-            app_id = kwargs[Consts.APP_ID]
-        if Consts.APP_SECRET in kwargs:
-            app_secret = kwargs[Consts.APP_SECRET]
-        if Consts.APP_TOKEN in kwargs:
-            app_token = kwargs[Consts.APP_TOKEN]
+        if "app_id" in kwargs:
+            app_id = kwargs["app_id"]
+        if "app_secret" in kwargs:
+            app_secret = kwargs["app_secret"]
+        if "app_token" in kwargs:
+            app_token = kwargs["app_token"]
         self.builder = RequestBuilder(app_id, app_secret, app_token)
 
     def make_get_request(self, host, url, headers=None, params=None):
@@ -20,3 +19,6 @@ class RestApiInvoker:
 
     def make_post_request(self, host, url, headers=None, params=None, body=None):
         return self.builder.build_post_request(host, url, headers, params, body)
+
+    def make_put_request(self, host, url, headers=None, params=None, body=None):
+        return self.builder.build_put_request(host, url, headers, params, body)

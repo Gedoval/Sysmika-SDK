@@ -1,11 +1,12 @@
 class HeaderConstants:
-    TG_CODE = "tg_code"
-    REDIRECT_URL = "redirect_url"
-    SITE = "site_id"
-    APP_ID = "app_id"
-    APP_SECRET = "app_secret"
-    APP_TOKEN = "app_token"
-    REFRESH_TOKEN = "refresh_token"
+    TG_CODE = "tg-code"
+    REDIRECT_URL = "redirect-url"
+    SITE = "site-id"
+    APP_ID = "app-id"
+    APP_SECRET = "app-secret"
+    APP_TOKEN = "app-token"
+    REFRESH_TOKEN = "refresh-token"
+    ITEM_ID = "item-id"
 
 
 # Endpoints exposed by the MercadoLibre site
@@ -15,6 +16,8 @@ class EndpointsConstants(HeaderConstants):
     CATEGORIES = "/categories"
     ATTRIBUTES = "/attributes"
     ITEMS = "/items"
+    LOCATION_AR = "/classified_locations/countries/AR"
+    LOCATION_STATE_INFO = "/classified_locations/"
 
 
 # Endpoints for the API exposed by the Sysmika-SDK
@@ -24,7 +27,12 @@ class ServiceEndpointsConstants(EndpointsConstants):
     REFRESH_ACCESS_TOKEN = "/auth/refresh_token"
     CATEGORIES = "/categories"
     CATEGORY_ATTRIBUTES = "/categories/<category_id>"
-    PUBLISH = "/publish"
+    CREATE_PUBLICATION = "/publish/create"
+    UPDATE_PUBLICATION = "/publish/update"
+    DELETE_PUBLICATION = "/publish/delete"
+    UPDATE_STATUS = "/publish/update/<status>"
+    LOCATION_GET_ARGENTINA = "/location/ar"
+    LOCATION_INFO = "/location/<location>/<state_id>"
 
 
 class UrlConstants(ServiceEndpointsConstants):
