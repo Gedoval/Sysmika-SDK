@@ -1,13 +1,18 @@
 import json
-
 from src.integrations.mercadolibre.invoker.mercadolibre_invoker import MercadoLibreAPICaller
 from src.integrations.mercadolibre.constants.constants import Constants as Consts
 from src.integrations.mercadolibre.model.access_token import AccessToken
-from src.integrations.mercadolibre.model.inmboliaria_categories import InmobiliariaCategories
+from src.integrations.mercadolibre.model.api_response import ApiResponse
 from src.integrations.mercadolibre.exceptions.mercadolibre_exceptions import *
 import requests_mock
 import os
 import yaml
+
+
+"""
+Unit test for the class MercadoLibreAPICaller. We mock the response from MercadoLibre
+All tests names must begin with 'test_' so Pytest can pick them up
+"""
 
 
 class TestMercadoLibreInvoker:
@@ -104,13 +109,15 @@ class TestMercadoLibreInvoker:
                 json=json.load(open(TestMercadoLibreInvoker.target_dir + "/resources/user_creation_error.json")),
                 status_code=400
             )
+            error = None
             try:
                 MercadoLibreAPICaller().create_mercado_libre_test_user(
                     "TG-1231",
                     "MLA"
                 )
             except UserCreationError as e:
-                assert isinstance(e, UserCreationError)
+                error = e
+            assert isinstance(error, UserCreationError)
 
     def test_get_category_description(self):
         with requests_mock.Mocker() as m:
@@ -138,3 +145,64 @@ class TestMercadoLibreInvoker:
             body = open(TestMercadoLibreInvoker.target_dir + "/resources/sample_publication.json").read()
             resp = invoker.post_real_state_publication(body)
             assert resp is not None
+            assert isinstance(resp, ApiResponse)
+
+    def test_put_publication(self):
+        with requests_mock.Mocker() as m:
+            m.put(
+                url=Consts.API_HOST + Consts.ITEMS + "/MLA777",
+                json=json.load(open(TestMercadoLibreInvoker.target_dir + "/resources/publication_update_response.json")),
+                status_code=200
+            )
+            invoker = MercadoLibreAPICaller(app_token="AG-999")
+            body = open(TestMercadoLibreInvoker.target_dir + "/resources/sample_publication.json").read()
+            resp = invoker.put_update_real_state_publication(body, "MLA777")
+            assert resp is not None
+            assert isinstance(resp, ApiResponse)
+
+    def test_put_update_publication_status(self):
+        with requests_mock.Mocker() as m:
+            m.put(
+                url=Consts.API_HOST + Consts.ITEMS + "/MLA777",
+                json=json.load(
+                    open(TestMercadoLibreInvoker.target_dir + "/resources/publication_update_response.json")),
+                status_code=200
+            )
+            invoker = MercadoLibreAPICaller(app_token="AG-999")
+            body = open(TestMercadoLibreInvoker.target_dir + "/resources/sample_publication.json").read()
+            resp = invoker.put_update_real_state_publication(body, "MLA777", "paused")
+            assert resp is not None
+            assert isinstance(resp, ApiResponse)
+
+    def test_delete_publication(self):
+        with requests_mock.Mocker() as m:
+            m.put(
+                url=Consts.API_HOST + Consts.ITEMS + "/MLA777",
+                json=json.load(
+                    open(TestMercadoLibreInvoker.target_dir + "/resources/publication_update_response.json")),
+                status_code=200
+            )
+            invoker = MercadoLibreAPICaller(app_token="AG-999")
+            resp = invoker.delete_publication("MLA777")
+            assert resp is not None
+            assert isinstance(resp, ApiResponse)
+
+    def test_get_argentina_locations(self):
+        with requests_mock.Mocker() as m:
+            m.get(
+                url=Consts.API_HOST + Consts.LOCATION_AR,
+                json=json.load(open(TestMercadoLibreInvoker.target_dir + "/resources/argentina_locations.json"))
+            )
+            resp = MercadoLibreAPICaller().get_argentina_locations_id()
+            assert resp is not None
+            assert resp.get("states") is not None
+
+    def test_get_location_info(self):
+        with requests_mock.Mocker() as m:
+            m.get(
+                url=Consts.API_HOST + Consts.LOCATION_STATE_INFO + "/states/TUxBQ0NBUGZlZG1sYQ",
+                json=json.load(open(TestMercadoLibreInvoker.target_dir + "/resources/salta_location_info.json"))
+            )
+            resp = MercadoLibreAPICaller().get_location_info("states", "TUxBQ0NBUGZlZG1sYQ")
+            assert resp is not None
+            assert resp.get("cities") is not None

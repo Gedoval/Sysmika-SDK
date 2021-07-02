@@ -24,8 +24,11 @@ class RequestBuilder:
         self.__encode_params(url)
         return self.client
 
-    def build_put_request(self, host, url, body, headers):
-        pass
+    def build_put_request(self, host, url, headers, params, body):
+        self.__init_client(host=host, headers=headers, params=params, body=body)
+        self.client.method = "PUT"
+        self.__encode_params(url)
+        return self.client
 
     def build_patch_request(self, host, url, body, headers):
         pass

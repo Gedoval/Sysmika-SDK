@@ -18,29 +18,39 @@ def create_app(is_dev=True):
 
     @app.route(Consts.GET_ACCESS_TOKEN)
     def generate_access_token():
-        if not (Consts.TG_CODE or Consts.REDIRECT_URL or Consts.APP_ID or Consts.APP_SECRET) in request.headers:
-            raise MissingHeadersError("Missing required headers", 400)
+        if not all(key in request.headers for key in (
+                Consts.TG_CODE, Consts.REDIRECT_URL, Consts.APP_ID, Consts.APP_SECRET
+        )):
+            return MissingHeadersError("Missing required headers", 400).to_json()
         invoker = MercadoLibreInvokerFactory.create_invoker(
             app_id=request.headers[Consts.APP_ID],
             app_secret=request.headers[Consts.APP_SECRET]
         )
-        access_token = invoker.get_access_token(
-            request.headers[Consts.TG_CODE],
-            request.headers[Consts.REDIRECT_URL]
-        )
+        try:
+            access_token = invoker.get_access_token(
+                request.headers[Consts.TG_CODE],
+                request.headers[Consts.REDIRECT_URL]
+            )
+        except AuthTokenGenerationError as e:
+            return vars(e)
         return vars(access_token)
 
     @app.route(Consts.REFRESH_ACCESS_TOKEN)
     def refresh_access_token():
-        if (Consts.REFRESH_TOKEN or Consts.APP_ID or Consts.APP_SECRET) not in request.headers:
-            raise MissingHeadersError("Missing required header", 400)
+        if not all(key in request.headers for key in (
+                Consts.REFRESH_TOKEN, Consts.APP_ID, Consts.APP_SECRET
+        )):
+            return MissingHeadersError("Missing required headers", 400).to_json()
         invoker = MercadoLibreInvokerFactory.create_invoker(
             app_id=request.headers[Consts.APP_ID],
             app_secret=request.headers[Consts.APP_SECRET]
         )
-        access_token = invoker.refresh_access_token(
-            request.headers[Consts.REFRESH_TOKEN]
-        )
+        try:
+            access_token = invoker.refresh_access_token(
+                request.headers[Consts.REFRESH_TOKEN]
+            )
+        except AuthTokenGenerationError as e:
+            return vars(e)
         return vars(access_token)
 
     """
@@ -49,13 +59,18 @@ def create_app(is_dev=True):
 
     @app.route(Consts.CREATE_TEST_USER)
     def create_test_user():
+        if not all(key in request.headers for key in (
+                Consts.APP_TOKEN, Consts.SITE
+        )):
+            return MissingHeadersError("Missing required headers", 400).to_json()
         invoker = MercadoLibreInvokerFactory.create_invoker()
-        if not (Consts.APP_TOKEN or Consts.SITE) in request.headers:
-            raise MissingHeadersError("Missing required headers", 400)
-        test_user = invoker.create_mercado_libre_test_user(
-            request.headers[Consts.APP_TOKEN],
-            request.headers[Consts.SITE]
-        )
+        try:
+            test_user = invoker.create_mercado_libre_test_user(
+                request.headers[Consts.APP_TOKEN],
+                request.headers[Consts.SITE]
+            )
+        except UserCreationError as e:
+            return vars(e)
         return vars(test_user)
 
     """
@@ -76,11 +91,77 @@ def create_app(is_dev=True):
     Publication Endpoints section
     """
 
-    @app.route(Consts.PUBLISH, methods=['POST'])
+    @app.route(Consts.CREATE_PUBLICATION, methods=['POST'])
     def post_real_state_publication():
-        invoker = MercadoLibreInvokerFactory.create_invoker()
         if Consts.APP_TOKEN not in request.headers:
-            raise MissingHeadersError("Missing required headers: App Token", 400)
-        return invoker.post_real_state_publication()
+            return MissingHeadersError("Missing required headers", 400).to_json()
+        invoker = MercadoLibreInvokerFactory.create_invoker(
+            app_token=request.headers[Consts.APP_TOKEN]
+        )
+        try:
+            response = invoker.post_real_state_publication(request.json)
+        except PublicationError as e:
+            return vars(e)
+        return vars(response)
+
+    @app.route(Consts.UPDATE_PUBLICATION, methods=['PUT'])
+    def put_update_real_state_publication():
+        if not all(key in request.headers for key in (
+            Consts.APP_TOKEN, Consts.ITEM_ID
+        )):
+            return MissingHeadersError("Missing required headers", 400).to_json()
+        invoker = MercadoLibreInvokerFactory.create_invoker(
+            app_token=request.headers[Consts.APP_TOKEN]
+        )
+        try:
+            response = invoker.put_update_real_state_publication(request.json, request.headers[Consts.ITEM_ID])
+        except PublicationError as e:
+            return vars(e)
+        return vars(response)
+
+    @app.route(Consts.UPDATE_STATUS,  methods=['PUT'])
+    def put_update_publication_status(status):
+        if not all(key in request.headers for key in (
+            Consts.APP_TOKEN, Consts.ITEM_ID
+        )):
+            return MissingHeadersError("Missing required headers", 400).to_json()
+        if status not in ["paused", "active", "closed"]:
+            return MissingQueryParameterError("The status sent is not allowed", 400).to_json()
+        invoker = MercadoLibreInvokerFactory.create_invoker(
+            app_token=request.headers[Consts.APP_TOKEN]
+        )
+        try:
+            response = invoker.put_update_real_state_publication(request.json, request.headers[Consts.ITEM_ID], status)
+        except PublicationError as e:
+            return vars(e)
+        return vars(response)
+
+    @app.route(Consts.DELETE_PUBLICATION, methods=['DELETE'])
+    def delete_real_state_publication():
+        if not all(key in request.headers for key in (
+                Consts.APP_TOKEN, Consts.ITEM_ID
+        )):
+            return MissingHeadersError("Missing required headers", 400).to_json()
+        invoker = MercadoLibreInvokerFactory.create_invoker(
+            app_token=request.headers[Consts.APP_TOKEN]
+        )
+        try:
+            response = invoker.delete_publication(request.headers[Consts.ITEM_ID])
+        except PublicationError as e:
+            return vars(e)
+        return vars(response)
+
+    """
+    Location Endpoints section
+    """
+    @app.route(Consts.LOCATION_GET_ARGENTINA)
+    def get_argentina_locations_id():
+        response = MercadoLibreInvokerFactory.create_invoker().get_argentina_locations_id()
+        return response
+
+    @app.route(Consts.LOCATION_INFO)
+    def get_location_info(location, state_id):
+        response = MercadoLibreInvokerFactory.create_invoker().get_location_info(location, state_id)
+        return response
 
     return app

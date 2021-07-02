@@ -2,6 +2,7 @@ import json
 from src.api.restapiinvoker import RestApiInvoker
 from src.integrations.mercadolibre.model.access_token import AccessToken
 from src.integrations.mercadolibre.exceptions.mercadolibre_exceptions import *
+from src.integrations.mercadolibre.model.api_response import ApiResponse
 from src.integrations.mercadolibre.model.test_user import TestUser
 from src.integrations.mercadolibre.model.inmboliaria_categories import InmobiliariaCategories
 from src.utils.Utils import SysmikaUtils
@@ -63,7 +64,7 @@ class MercadoLibreAPICaller(RestApiInvoker):
             site_body
         )
         response = requests.post(client.host + client.url, data=client.post_body, headers=client.header)
-        if response.status_code is not 200:
+        if response.status_code is not 201:
             raise SysmikaUtils.json_parser(response.json(), UserCreationError())
         else:
             test_user = SysmikaUtils.json_parser(response.json(), TestUser())
@@ -95,7 +96,64 @@ class MercadoLibreAPICaller(RestApiInvoker):
             body=body
         )
         response = requests.post(client.host + client.url, json=client.post_body, headers=client.header)
-        return response
+        if response.status_code == 400:
+            raise SysmikaUtils.json_parser(response.json(), PublicationError())
+        return SysmikaUtils.json_parser(response.json(), ApiResponse())
+
+    def put_update_real_state_publication(self, body, item_id, status=None):
+        headers = {"Authorization": "Bearer " + self.builder.get_app_token(),
+                   "Content-Type": "application/json",
+                   "Accept": "application/json"
+                   }
+        if status is not None:
+            body = {"status": status}
+        client = self.make_put_request(
+            Consts.API_HOST,
+            Consts.ITEMS + "/" + item_id,
+            body=body,
+            headers=headers
+        )
+        response = requests.put(client.host + client.url, json=client.post_body)
+        if response.status_code != 200:
+            raise SysmikaUtils.json_parser(response.json(), PublicationError())
+        return SysmikaUtils.json_parser(response.json(), ApiResponse())
+
+    def delete_publication(self, item_id):
+        headers = {"Authorization": "Bearer " + self.builder.get_app_token(),
+                   "Content-Type": "application/json",
+                   "Accept": "application/json"
+                   }
+        body = {"deleted": "true"}
+        client = self.make_put_request(
+            Consts.API_HOST,
+            Consts.ITEMS + "/" + item_id,
+            body=body,
+            headers=headers
+        )
+        response = requests.put(client.host + client.url, json=client.post_body)
+        if response.status_code != 200:
+            raise SysmikaUtils.json_parser(response.json(), PublicationError())
+        return SysmikaUtils.json_parser(response.json(), ApiResponse())
+
+    def get_argentina_locations_id(self):
+        client = self.make_get_request(
+            Consts.API_HOST,
+            Consts.LOCATION_AR,
+            None,
+            None
+        )
+        response = requests.get(client.host + client.url)
+        return response.json()
+
+    def get_location_info(self, location, state_id):
+        client = self.make_get_request(
+            Consts.API_HOST,
+            Consts.LOCATION_STATE_INFO + "/" + location + "/" + state_id,
+            None,
+            None
+        )
+        response = requests.get(client.host + client.url)
+        return response.json()
 
     def create_token_request_body(self, tg_code, redirect_url):
         return "grant_type=authorization_code&" \
@@ -120,6 +178,8 @@ class MercadoLibreAPICaller(RestApiInvoker):
 
     def __set_access_token(self, token):
         self.builder.set_app_token(token)
+
+
 
 
 

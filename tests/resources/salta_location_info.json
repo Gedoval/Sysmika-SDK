@@ -1,0 +1,133 @@
+{
+    "id": "TUxBUFNBTGFjMTJi",
+    "name": "Salta",
+    "country": {
+        "id": "AR",
+        "name": "Argentina"
+    },
+    "geo_information": {
+        "location": {
+            "latitude": -25.2529539,
+            "longitude": -64.7162415
+        }
+    },
+    "time_zone": "GMT-03:00",
+    "cities": [
+        {
+            "id": "TVhYQWxmYXJjaXRvVFV4QlVGTkJUR0ZqTVRKa",
+            "name": "Alfarcito"
+        },
+        {
+            "id": "TUxBQ0FOVDgzMWU5",
+            "name": "Anta"
+        },
+        {
+            "id": "TUxBQ0NBQzUzM2Vi",
+            "name": "Cachi"
+        },
+        {
+            "id": "TUxBQ0NBRmI2MjFm",
+            "name": "Cafayate"
+        },
+        {
+            "id": "TUxBQ0NFUmJmNDlh",
+            "name": "Cerrillos"
+        },
+        {
+            "id": "TVhYQ2hhZ3VhcmFsVFV4QlVGTkJUR0ZqTVRKa",
+            "name": "Chaguaral"
+        },
+        {
+            "id": "TUxBQ0NISTgxZTEz",
+            "name": "Chicoana"
+        },
+        {
+            "id": "TVhYQ29yb25lbCBKdWFuIFNvbMOhVFV4QlVGT",
+            "name": "Coronel Juan Solá"
+        },
+        {
+            "id": "TUxBQ0dFTmJkYTky",
+            "name": "General Güemes"
+        },
+        {
+            "id": "TUxBQ0dSQWJkMTc4",
+            "name": "Gral. José de San Martín"
+        },
+        {
+            "id": "TUxBQ0dVQWEyZjIw",
+            "name": "Guachipas"
+        },
+        {
+            "id": "TUxBQ0lSVTQ5NTNk",
+            "name": "Iruya"
+        },
+        {
+            "id": "TUxBQ0xBWjY4Mjll",
+            "name": "La Caldera"
+        },
+        {
+            "id": "TUxBQ0xBWjg3N2Rl",
+            "name": "La Candelaria"
+        },
+        {
+            "id": "TUxBQ0xBWmViNmIz",
+            "name": "La Poma"
+        },
+        {
+            "id": "TUxBQ0xBWjljMDgz",
+            "name": "La Viña"
+        },
+        {
+            "id": "TVhYTGFzIE1vamFycml0YXNUVXhCVUZOQlRHR",
+            "name": "Las Mojarritas"
+        },
+        {
+            "id": "TUxBQ0xPUzk2ODNj",
+            "name": "Los Andes"
+        },
+        {
+            "id": "TUxBQ01FVDI4OWM4",
+            "name": "Metán"
+        },
+        {
+            "id": "TUxBQ01PTDIwZGJl",
+            "name": "Molinos"
+        },
+        {
+            "id": "TVhYTnVldmEgQ2VyZXNUVXhCVUZOQlRHRmpNV",
+            "name": "Nueva Ceres"
+        },
+        {
+            "id": "TUxBQ09SwWI5NTFm",
+            "name": "Orán"
+        },
+        {
+            "id": "TUxBQ1JJVjQyY2Zl",
+            "name": "Rivadavia"
+        },
+        {
+            "id": "TUxBQ1JPUzlmODcw",
+            "name": "Rosario de Lerma"
+        },
+        {
+            "id": "TUxBQ1JPUzE1NTg3",
+            "name": "Rosario de la Frontera"
+        },
+        {
+            "id": "TUxBQ0NBUGVlMjc3",
+            "name": "Salta"
+        },
+        {
+            "id": "TUxBQ1NBTjQ4NmVi",
+            "name": "San Carlos"
+        },
+        {
+            "id": "TVhYU2FuIExvcmVuem9UVXhCVUZOQlRHRmpNV",
+            "name": "San Lorenzo"
+        },
+        {
+            "id": "TUxBQ1NBTjY5ZWJm",
+            "name": "Santa Victoria"
+        }
+    ]
+}
