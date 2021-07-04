@@ -8,9 +8,6 @@ class MercadoLibreError(BaseException):
         self.error = None
         self.cause = None
 
-    def to_json(self):
-        return json.dumps(self.__dict__)
-
 
 class AuthTokenGenerationError(MercadoLibreError):
     def __init__(self):
@@ -37,4 +34,6 @@ class MissingQueryParameterError(MercadoLibreError):
 
 
 class PublicationError(MercadoLibreError):
-    pass
+    def __init__(self, message=None, status=None):
+        self.status = status
+        self.message = message

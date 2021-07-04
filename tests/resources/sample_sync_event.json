@@ -1,0 +1,67 @@
+{
+	"UserId": "USER_1",
+	"PublicationType": "MLA45678",
+	"PublicId": "sysmika_ext:10",
+	"Payload": {
+		"title": "Property title",
+		"category_id": "MLA401686",
+		"price": 100000,
+		"currency_id": "ARS",
+		"available_quantity": 1,
+		"buying_mode": "classified",
+		"listing_type_id": "silver",
+		"condition": "not_specified",
+		"pictures": [{
+			"source": "http://mla-d2-p.mlstatic.com/item-de-test-no-ofertar-543605-MLA25041518406_092016-O.jpg?square=false"
+		}],
+		"seller_contact": {
+			"contact": "Contact name",
+			"other_info": "Additional contact info",
+			"area_code": "011",
+			"phone": "4444-5555",
+			"area_code2": "",
+			"phone2": "",
+			"email": "contact-email@somedomain.com",
+			"webmail": ""
+		},
+		"location": {
+			"address_line": "My property address 1234",
+			"zip_code": "01234567",
+			"neighborhood": {
+				"id": "TUxBQlBBUzgyNjBa"
+			},
+			"latitude": -34.48755,
+			"longitude": -58.56987
+		},
+		"attributes": [{
+				"id": "ROOMS",
+				"value_name": "2"
+			},
+			{
+				"id": "FULL_BATHROOMS",
+				"value_name": "1"
+			},
+			{
+				"id": "PARKING_LOTS",
+				"value_name": "1"
+			},
+			{
+				"id": "BEDROOMS",
+				"value_name": "4"
+			},
+			{
+				"id": "COVERED_AREA",
+				"value_name": "30 m²"
+			},
+			{
+				"id": "TOTAL_AREA",
+				"value_name": "40 m²"
+			}
+		],
+		"video_id": "gqkEN9poKM;matterport",
+		"description": {
+			"plain_text": "This is the real estate property description. \n"
+		}
+	},
+	"PublisherId": "MLU888"
+}

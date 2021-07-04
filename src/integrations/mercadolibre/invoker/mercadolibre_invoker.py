@@ -87,13 +87,18 @@ class MercadoLibreAPICaller(RestApiInvoker):
     def get_categories(self):
         return self.categories
 
+    """
+    Publication Methods
+    """
+
     def post_real_state_publication(self, body):
         headers = {"Authorization": "Bearer " + self.builder.get_app_token(), "Content-Type": "application/json"}
+        self.__validate_sync_event_json(body)
         client = self.make_post_request(
             Consts.API_HOST,
             Consts.ITEMS,
             headers=headers,
-            body=body
+            body=body.get("Payload")
         )
         response = requests.post(client.host + client.url, json=client.post_body, headers=client.header)
         if response.status_code == 400:
@@ -107,6 +112,10 @@ class MercadoLibreAPICaller(RestApiInvoker):
                    }
         if status is not None:
             body = {"status": status}
+        else:
+            self.__validate_sync_event_json(body)
+            body = body.get("Payload")
+
         client = self.make_put_request(
             Consts.API_HOST,
             Consts.ITEMS + "/" + item_id,
@@ -135,6 +144,9 @@ class MercadoLibreAPICaller(RestApiInvoker):
             raise SysmikaUtils.json_parser(response.json(), PublicationError())
         return SysmikaUtils.json_parser(response.json(), ApiResponse())
 
+    """
+    Location Endpoints
+    """
     def get_argentina_locations_id(self):
         client = self.make_get_request(
             Consts.API_HOST,
@@ -179,6 +191,9 @@ class MercadoLibreAPICaller(RestApiInvoker):
     def __set_access_token(self, token):
         self.builder.set_app_token(token)
 
+    def __validate_sync_event_json(self, data):
+        if not (SysmikaUtils.validate_sync_event_schema(data)):
+            raise PublicationError(status=400, message="The request body is not valid. Please check the JSON schema")
 
 
 

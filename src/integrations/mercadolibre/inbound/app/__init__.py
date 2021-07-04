@@ -21,7 +21,7 @@ def create_app(is_dev=True):
         if not all(key in request.headers for key in (
                 Consts.TG_CODE, Consts.REDIRECT_URL, Consts.APP_ID, Consts.APP_SECRET
         )):
-            return MissingHeadersError("Missing required headers", 400).to_json()
+            return vars(MissingHeadersError("Missing required headers", 400))
         invoker = MercadoLibreInvokerFactory.create_invoker(
             app_id=request.headers[Consts.APP_ID],
             app_secret=request.headers[Consts.APP_SECRET]
@@ -40,7 +40,7 @@ def create_app(is_dev=True):
         if not all(key in request.headers for key in (
                 Consts.REFRESH_TOKEN, Consts.APP_ID, Consts.APP_SECRET
         )):
-            return MissingHeadersError("Missing required headers", 400).to_json()
+            return vars(MissingHeadersError("Missing required headers", 400))
         invoker = MercadoLibreInvokerFactory.create_invoker(
             app_id=request.headers[Consts.APP_ID],
             app_secret=request.headers[Consts.APP_SECRET]
@@ -62,7 +62,7 @@ def create_app(is_dev=True):
         if not all(key in request.headers for key in (
                 Consts.APP_TOKEN, Consts.SITE
         )):
-            return MissingHeadersError("Missing required headers", 400).to_json()
+            return vars(MissingHeadersError("Missing required headers", 400))
         invoker = MercadoLibreInvokerFactory.create_invoker()
         try:
             test_user = invoker.create_mercado_libre_test_user(
@@ -94,7 +94,7 @@ def create_app(is_dev=True):
     @app.route(Consts.CREATE_PUBLICATION, methods=['POST'])
     def post_real_state_publication():
         if Consts.APP_TOKEN not in request.headers:
-            return MissingHeadersError("Missing required headers", 400).to_json()
+            return vars(MissingHeadersError("Missing required headers", 400))
         invoker = MercadoLibreInvokerFactory.create_invoker(
             app_token=request.headers[Consts.APP_TOKEN]
         )
@@ -109,7 +109,7 @@ def create_app(is_dev=True):
         if not all(key in request.headers for key in (
             Consts.APP_TOKEN, Consts.ITEM_ID
         )):
-            return MissingHeadersError("Missing required headers", 400).to_json()
+            return vars(MissingHeadersError("Missing required headers", 400))
         invoker = MercadoLibreInvokerFactory.create_invoker(
             app_token=request.headers[Consts.APP_TOKEN]
         )
@@ -124,9 +124,9 @@ def create_app(is_dev=True):
         if not all(key in request.headers for key in (
             Consts.APP_TOKEN, Consts.ITEM_ID
         )):
-            return MissingHeadersError("Missing required headers", 400).to_json()
+            return vars(MissingHeadersError("Missing required headers", 400))
         if status not in ["paused", "active", "closed"]:
-            return MissingQueryParameterError("The status sent is not allowed", 400).to_json()
+            return vars(MissingQueryParameterError("The status sent is not allowed", 400))
         invoker = MercadoLibreInvokerFactory.create_invoker(
             app_token=request.headers[Consts.APP_TOKEN]
         )
@@ -141,7 +141,7 @@ def create_app(is_dev=True):
         if not all(key in request.headers for key in (
                 Consts.APP_TOKEN, Consts.ITEM_ID
         )):
-            return MissingHeadersError("Missing required headers", 400).to_json()
+            return vars(MissingHeadersError("Missing required headers", 400))
         invoker = MercadoLibreInvokerFactory.create_invoker(
             app_token=request.headers[Consts.APP_TOKEN]
         )
