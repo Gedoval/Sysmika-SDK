@@ -167,7 +167,7 @@ class TestMercadoLibreApi:
                 Consts.APP_TOKEN: "AG-1234857",
                 Consts.ITEM_ID: "MLA11234"
             }
-            body = open(TestMercadoLibreApi.target_dir + "/resources/sample_publication.json").read()
+            body = json.load(open(TestMercadoLibreApi.target_dir + "/resources/sample_sync_event.json"))
             response = client.put(Consts.UPDATE_PUBLICATION, headers=headers, json=body)
             assert response is not None
             data = SysmikaUtils.flask_data_parser(response.data)
@@ -185,7 +185,7 @@ class TestMercadoLibreApi:
                 Consts.APP_TOKEN: "AG-1234857",
                 Consts.ITEM_ID: "MLA11234"
             }
-            body = open(TestMercadoLibreApi.target_dir + "/resources/sample_publication.json").read()
+            body = json.load(open(TestMercadoLibreApi.target_dir + "/resources/sample_sync_event.json"))
             response = client.put(Consts.UPDATE_PUBLICATION + "/paused", headers=headers, json=body)
             assert response is not None
             assert response.status_code is 200
@@ -204,7 +204,7 @@ class TestMercadoLibreApi:
                 Consts.APP_TOKEN: "AG-1234857",
                 Consts.ITEM_ID: "MLA11234"
             }
-            body = open(TestMercadoLibreApi.target_dir + "/resources/sample_publication.json").read()
+            body = json.load(open(TestMercadoLibreApi.target_dir + "/resources/sample_sync_event.json"))
             response = client.put(Consts.UPDATE_PUBLICATION + "/sarasa", headers=headers, json=body)
             assert response is not None
             assert response.status_code is 200

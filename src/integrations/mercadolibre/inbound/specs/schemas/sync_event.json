@@ -19,12 +19,12 @@
     },
     "Payload": {
       "description": "Data that will be sent to MercadoLibre",
-      "type": "object",
-      "$ref": "./mercadolibre_publication.json"
+      "type": "object"
     },
     "PublisherId": {
       "description": "User Id on the MercadoLibre platform. This user will be used to publish the product",
       "type": "string"
     }
-  }
+  },
+  "required": ["UserId", "PublicationType", "PublicId", "Payload", "PublisherId"]
 }

@@ -142,7 +142,7 @@ class TestMercadoLibreInvoker:
             )
             invoker = MercadoLibreAPICaller()
             invoker.builder.set_app_token("AG-12341")
-            body = open(TestMercadoLibreInvoker.target_dir + "/resources/sample_publication.json").read()
+            body = json.load(open(TestMercadoLibreInvoker.target_dir + "/resources/sample_sync_event.json"))
             resp = invoker.post_real_state_publication(body)
             assert resp is not None
             assert isinstance(resp, ApiResponse)
@@ -151,11 +151,11 @@ class TestMercadoLibreInvoker:
         with requests_mock.Mocker() as m:
             m.put(
                 url=Consts.API_HOST + Consts.ITEMS + "/MLA777",
-                json=json.load(open(TestMercadoLibreInvoker.target_dir + "/resources/publication_update_response.json")),
+                json=json.load(open(TestMercadoLibreInvoker.target_dir + "/resources/sample_publication.json")),
                 status_code=200
             )
             invoker = MercadoLibreAPICaller(app_token="AG-999")
-            body = open(TestMercadoLibreInvoker.target_dir + "/resources/sample_publication.json").read()
+            body = json.load(open(TestMercadoLibreInvoker.target_dir + "/resources/sample_sync_event.json"))
             resp = invoker.put_update_real_state_publication(body, "MLA777")
             assert resp is not None
             assert isinstance(resp, ApiResponse)
@@ -169,7 +169,7 @@ class TestMercadoLibreInvoker:
                 status_code=200
             )
             invoker = MercadoLibreAPICaller(app_token="AG-999")
-            body = open(TestMercadoLibreInvoker.target_dir + "/resources/sample_publication.json").read()
+            body = json.load(open(TestMercadoLibreInvoker.target_dir + "/resources/sample_sync_event.json"))
             resp = invoker.put_update_real_state_publication(body, "MLA777", "paused")
             assert resp is not None
             assert isinstance(resp, ApiResponse)
