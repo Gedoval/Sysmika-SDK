@@ -1,5 +1,5 @@
 from flask import Flask, request
-from ..instance import config
+# from ..instance import config
 from src.integrations.mercadolibre.inbound.invoker_factory import MercadoLibreInvokerFactory
 from src.integrations.mercadolibre.exceptions.mercadolibre_exceptions import *
 from src.integrations.mercadolibre.constants.constants import Constants as Consts
@@ -7,10 +7,10 @@ from src.integrations.mercadolibre.constants.constants import Constants as Const
 
 def create_app(is_dev=True):
     app = Flask(__name__, instance_relative_config=True)
-    if is_dev:
-        app.config.from_object(config.DevConfig)
-    else:
-        app.config.from_object(config.ProdConfig)
+    # if is_dev:
+    #     app.config.from_object(config.DevConfig)
+    # else:
+    #     app.config.from_object(config.ProdConfig)
 
     """
     Auth Endpoints section
