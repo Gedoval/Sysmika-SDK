@@ -9,6 +9,7 @@ requests-mock = "*"
 pytest = "*"
 requests = "*"
 pyyaml = "*"
+jsonschema = "*"
 
 [dev-packages]
 
