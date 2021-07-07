@@ -10,6 +10,7 @@ pytest = "*"
 requests = "*"
 pyyaml = "*"
 jsonschema = "*"
+wheel = "*"
 
 [dev-packages]
 
