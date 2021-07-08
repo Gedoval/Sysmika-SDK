@@ -11,15 +11,9 @@
 		"price",
 		"currency_id",
 		"available_quantity",
-		"buying_mode",
 		"listing_type_id",
-		"condition",
-		"pictures",
-		"seller_contact",
 		"location",
-		"attributes",
-		"video_id",
-		"description"
+		"attributes"
 	],
 	"properties": {
 		"title": {
@@ -280,7 +274,7 @@
 			"$id": "#/properties/attributes",
 			"type": "array",
 			"title": "Category attributes",
-			"description": "These are the specific attributes for the category Id. This schema holds only the required attributes, for a more comprehensive list of attributes call /categories/<category_id>.",
+			"description": "These are the specific attributes for the category Id. This schema holds only the required attributes for only one category Id, for a more comprehensive list of attributes call /categories/<category_id>.",
 			"default": [],
 			"examples": [
 				[{
