@@ -164,4 +164,6 @@ def create_app(is_dev=True):
         response = MercadoLibreInvokerFactory.create_invoker().get_location_info(location, state_id)
         return response
 
+    if __name__ == "__main__":
+        app.run()
     return app

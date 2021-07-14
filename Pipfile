@@ -11,6 +11,10 @@ requests = "*"
 pyyaml = "*"
 jsonschema = "*"
 wheel = "*"
+gunicorn = "*"
+greenlet = "*"
+eventlet = "*"
+gevent = "*"
 
 [dev-packages]
 
