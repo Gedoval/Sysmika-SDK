@@ -10,4 +10,5 @@ RUN apt update -y && apt upgrade -y && apt-get update -y && apt install git pyth
 RUN pip install pipenv
 RUN git clone https://github.com/Gedoval/Sysmika-SDK.git
 RUN cd Sysmika-SDK && pipenv install --system
-RUN cd Sysmika-SDK/src/integrations/mercadolibre/inbound && flask run
+WORKDIR /sysmika/Sysmika-SDK
+ENTRYPOINT ["./gunicorn_starter.sh"]
