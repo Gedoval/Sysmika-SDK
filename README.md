@@ -50,7 +50,8 @@ To run the Flask server (Windows):
 Gunicorn is a WSGI HTTP Server that sits on top of the Flask API. It's recommended to use a reverse proxy (preferably Nginx) if the API is going to be exposed directly to the web
 
 * Ensure that all dependencies are installed in the virtual env by running __pipenv install__
-* From the root of the  repository run __gunicorn --bind 0.0.0.0:5000 'wsgi:run_app()' -k gevent --worker-connections 1000__
+* From the root of the  repository run __gunicorn 'wsgi:run_app()'__ 
+* The file __gunicorn.conf.py__ contains configurations for the Gunicorn server. More can be found [here](https://docs.gunicorn.org/en/latest/settings.html)
 
 # Project Structure
 
