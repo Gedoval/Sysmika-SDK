@@ -5,13 +5,8 @@ from src.integrations.mercadolibre.exceptions.mercadolibre_exceptions import *
 from src.integrations.mercadolibre.constants.constants import Constants as Consts
 
 
-def create_app(is_dev=True):
+def create_app():
     app = Flask(__name__, instance_relative_config=True)
-    # if is_dev:
-    #     app.config.from_object(config.DevConfig)
-    # else:
-    #     app.config.from_object(config.ProdConfig)
-
     """
     Auth Endpoints section
     """
@@ -164,6 +159,4 @@ def create_app(is_dev=True):
         response = MercadoLibreInvokerFactory.create_invoker().get_location_info(location, state_id)
         return response
 
-    if __name__ == "__main__":
-        app.run()
     return app

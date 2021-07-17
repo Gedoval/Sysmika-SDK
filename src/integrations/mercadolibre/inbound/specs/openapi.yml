@@ -13,7 +13,7 @@ tags:
 
 servers:
   - url: 127.0.1:5000
-    description: For local development using Flask
+    description: For local development using Flask or Gunicorn
 
 paths:
   /user/test:

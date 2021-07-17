@@ -81,7 +81,7 @@ class MercadoLibreAPICaller(RestApiInvoker):
         if response.status_code is not 200:
             raise SysmikaUtils.json_parser(response.json(), MercadoLibreError())
         else:
-            desc = json.dumps(response.json())
+            desc = json.dumps(response.json(), sort_keys=True, indent=4)
         return desc
 
     def get_categories(self):

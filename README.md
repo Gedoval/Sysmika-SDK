@@ -22,24 +22,35 @@ Each service exposes an API, which is defined using the [OpenAPI](https://swagge
 
 # Installation
 
-For development for now just set a pipenv using the Pipfile of the repo for dependencies. In __integrations/<service>/credentials__ we have two YAML files: 
-* One to hold real credentials (__credentials.yml__)
-* One to hold mock credentials (__credentials.example.yml__)
+## Windows (for development only)
 
-`TODO: build a dist package`
+* Install [Python 3.9](https://www.python.org/downloads/)
+* Install [Pip](https://www.geeksforgeeks.org/how-to-install-pip-on-windows/)
+* Install pipenv by running __pip install --user pipenv__
+* Clone this repo and install all depencies by running __pipenv install__ from the root of the repository
+* [Run Flask](#flask)
+
+## Linux (for develoopment/production)
+
+* Install Python 3.9 and Pip
+* Run __sudo apt install pipenv__
 
 ## Flask
-
-`TODO: add documentation from Notion.`
 
 To run the Flask server (Windows):
 
 * On cmd type:
-  * __set FLASK_APP=run:run_app()__ // If we pass False to run_app, the Flask application will use Production credentials
+  * __set FLASK_APP=run:run_app()__
   *  __set FLASK_ENV=development__
-  * Go the directory __inbound__ in the integration folder (for example: __src/integrations/mercadolibre/inbound__)
-  * Run __flask run__ . Use --port to change the port of the server (default is 5000)  
+  * Go the directory __inbound__ in the integrations folder (for example: __src/integrations/mercadolibre/inbound__)
+  * Run __flask run__ . Use --port to change the port of the server (default is 5000) 
+  
+## Gunicorn
 
+Gunicorn is a WSGI HTTP Server that sits on top of the Flask API. It's recommended to use a reverse proxy (preferably Nginx) if the API is going to be exposed directly to the web
+
+* Ensure that all dependencies are installed in the virtual env by running __pipenv install__
+* From the root of the  repository run __gunicorn --bind 0.0.0.0:5000 'wsgi:run_app()' -k gevent --worker-connections 1000__
 
 # Project Structure
 
